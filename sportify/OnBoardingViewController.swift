@@ -30,7 +30,7 @@ class OnBoardingViewController: UIViewController {
     @IBAction func skipaction(_ sender: UIButton) {
         let userDefault=UserDefaults.standard
         userDefault.setValue(true, forKey: "loginBefore")
-        let home = self.storyboard?.instantiateViewController(identifier: "test") as!EslamViewController
+        let home = self.storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
         home.modalPresentationStyle = .fullScreen
         home.modalTransitionStyle = .crossDissolve
         present(home, animated: true)

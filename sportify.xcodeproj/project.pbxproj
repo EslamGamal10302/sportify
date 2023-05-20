@@ -19,7 +19,10 @@
 		A720925C2A17F1F5003FFBDB /* sportifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720925B2A17F1F5003FFBDB /* sportifyUITestsLaunchTests.swift */; };
 		A720926D2A181A08003FFBDB /* OnBoardingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720926C2A181A08003FFBDB /* OnBoardingPageController.swift */; };
 		A720926F2A181A41003FFBDB /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720926E2A181A41003FFBDB /* OnBoardingViewController.swift */; };
-		A72092732A183A4F003FFBDB /* EslamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72092722A183A4F003FFBDB /* EslamViewController.swift */; };
+		A735C4142A1934FC00B3001A /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735C4132A1934FC00B3001A /* HomeModel.swift */; };
+		A7B1EB5F2A191BCC00D3EF9B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B1EB5E2A191BCC00D3EF9B /* HomeViewController.swift */; };
+		A7B1EB612A191E3800D3EF9B /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B1EB602A191E3800D3EF9B /* FavoriteViewController.swift */; };
+		A7B1EB632A192A9600D3EF9B /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B1EB622A192A9600D3EF9B /* HomeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +59,10 @@
 		A720925B2A17F1F5003FFBDB /* sportifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sportifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A720926C2A181A08003FFBDB /* OnBoardingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageController.swift; sourceTree = "<group>"; };
 		A720926E2A181A41003FFBDB /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
-		A72092722A183A4F003FFBDB /* EslamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EslamViewController.swift; sourceTree = "<group>"; };
+		A735C4132A1934FC00B3001A /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		A7B1EB5E2A191BCC00D3EF9B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A7B1EB602A191E3800D3EF9B /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		A7B1EB622A192A9600D3EF9B /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +118,15 @@
 				A72092392A17F1F3003FFBDB /* ViewController.swift */,
 				A720926E2A181A41003FFBDB /* OnBoardingViewController.swift */,
 				A720926C2A181A08003FFBDB /* OnBoardingPageController.swift */,
+				A7B1EB5E2A191BCC00D3EF9B /* HomeViewController.swift */,
 				A720923B2A17F1F3003FFBDB /* Main.storyboard */,
 				A72092412A17F1F5003FFBDB /* Assets.xcassets */,
 				A72092432A17F1F5003FFBDB /* LaunchScreen.storyboard */,
 				A72092462A17F1F5003FFBDB /* Info.plist */,
 				A720923E2A17F1F3003FFBDB /* sportify.xcdatamodeld */,
-				A72092722A183A4F003FFBDB /* EslamViewController.swift */,
+				A7B1EB602A191E3800D3EF9B /* FavoriteViewController.swift */,
+				A7B1EB622A192A9600D3EF9B /* HomeCollectionViewCell.swift */,
+				A735C4132A1934FC00B3001A /* HomeModel.swift */,
 			);
 			path = sportify;
 			sourceTree = "<group>";
@@ -272,10 +281,13 @@
 			files = (
 				A720923A2A17F1F3003FFBDB /* ViewController.swift in Sources */,
 				A72092402A17F1F3003FFBDB /* sportify.xcdatamodeld in Sources */,
-				A72092732A183A4F003FFBDB /* EslamViewController.swift in Sources */,
+				A7B1EB5F2A191BCC00D3EF9B /* HomeViewController.swift in Sources */,
 				A720926D2A181A08003FFBDB /* OnBoardingPageController.swift in Sources */,
 				A720926F2A181A41003FFBDB /* OnBoardingViewController.swift in Sources */,
+				A7B1EB632A192A9600D3EF9B /* HomeCollectionViewCell.swift in Sources */,
 				A72092362A17F1F3003FFBDB /* AppDelegate.swift in Sources */,
+				A7B1EB612A191E3800D3EF9B /* FavoriteViewController.swift in Sources */,
+				A735C4142A1934FC00B3001A /* HomeModel.swift in Sources */,
 				A72092382A17F1F3003FFBDB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

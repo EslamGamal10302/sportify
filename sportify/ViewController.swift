@@ -32,7 +32,7 @@ class ViewController: UIViewController {
                if completion {
                    let userDefault=UserDefaults.standard
                    if userDefault.bool(forKey: "loginBefore") {
-                       let home = self.storyboard?.instantiateViewController(identifier: "test") as!EslamViewController
+                       let home = self.storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
                        home.modalPresentationStyle = .fullScreen
                        home.modalTransitionStyle = .crossDissolve
                        self.present(home, animated: true)
