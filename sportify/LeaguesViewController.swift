@@ -1,21 +1,26 @@
 //
-//  FavoriteViewController.swift
+//  LeaguesViewController.swift
 //  sportify
 //
-//  Created by Eslam gamal on 20/05/2023.
+//  Created by Eslam gamal on 21/05/2023.
 //
 
 import UIKit
 
-class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
-  
+class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
+
     @IBOutlet weak var myTable: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        tabBarController?.tabBar.isHidden = true
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -26,11 +31,11 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        as! FavoriteViewCell
-        cell.fav_label.text="Eslam"
-        cell.fav_image.image=UIImage(named: "craket")!
-        cell.fav_image.layer.cornerRadius = cell.fav_image.frame.size.width / 2
-         cell.fav_image.clipsToBounds = true
+        as! LeaguesViewCell
+        cell.leagues_title.text="Primary League"
+        cell.leagues_image.image=UIImage(named: "craket")!
+        cell.leagues_image.layer.cornerRadius = cell.leagues_image.frame.size.width / 2
+        cell.leagues_image.clipsToBounds = true
         cell.container.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         return cell
@@ -49,5 +54,8 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("search changed")
     }
-    
+
+  
+
+
 }

@@ -16,6 +16,8 @@ class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlo
     }
     override func viewWillAppear(_ animated: Bool) {
         print("will appear")
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        tabBarController?.tabBar.isHidden = false
     }
 
   
@@ -66,6 +68,21 @@ class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlo
         self.sportsAray?.append(HomeGames(image: UIImage(named: "basket")!, title: "Basketball"))
         self.sportsAray?.append(HomeGames(image: UIImage(named: "tennis")!, title: "Tennis"))
         self.sportsAray?.append(HomeGames(image: UIImage(named: "craket")!, title: "Cricket"))
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch(indexPath.row){
+        case 0 :
+            print("football")
+            let leaguesView = self.storyboard?.instantiateViewController(identifier: "leagues") as! LeaguesViewController
+            self.navigationController?.pushViewController(leaguesView, animated: true)
+        case 1:
+            print("basket")
+        case 2 :
+            print("tennis")
+        default :
+            print("cracket")
+        }
     }
 
     // MARK: UICollectionViewDelegate
