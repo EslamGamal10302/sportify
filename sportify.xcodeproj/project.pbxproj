@@ -17,6 +17,9 @@
 		A72092502A17F1F5003FFBDB /* sportifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720924F2A17F1F5003FFBDB /* sportifyTests.swift */; };
 		A720925A2A17F1F5003FFBDB /* sportifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72092592A17F1F5003FFBDB /* sportifyUITests.swift */; };
 		A720925C2A17F1F5003FFBDB /* sportifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720925B2A17F1F5003FFBDB /* sportifyUITestsLaunchTests.swift */; };
+		A720926D2A181A08003FFBDB /* OnBoardingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720926C2A181A08003FFBDB /* OnBoardingPageController.swift */; };
+		A720926F2A181A41003FFBDB /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A720926E2A181A41003FFBDB /* OnBoardingViewController.swift */; };
+		A72092732A183A4F003FFBDB /* EslamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72092722A183A4F003FFBDB /* EslamViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		A72092552A17F1F5003FFBDB /* sportifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sportifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72092592A17F1F5003FFBDB /* sportifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sportifyUITests.swift; sourceTree = "<group>"; };
 		A720925B2A17F1F5003FFBDB /* sportifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sportifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A720926C2A181A08003FFBDB /* OnBoardingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageController.swift; sourceTree = "<group>"; };
+		A720926E2A181A41003FFBDB /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		A72092722A183A4F003FFBDB /* EslamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EslamViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +110,14 @@
 				A72092352A17F1F3003FFBDB /* AppDelegate.swift */,
 				A72092372A17F1F3003FFBDB /* SceneDelegate.swift */,
 				A72092392A17F1F3003FFBDB /* ViewController.swift */,
+				A720926E2A181A41003FFBDB /* OnBoardingViewController.swift */,
+				A720926C2A181A08003FFBDB /* OnBoardingPageController.swift */,
 				A720923B2A17F1F3003FFBDB /* Main.storyboard */,
 				A72092412A17F1F5003FFBDB /* Assets.xcassets */,
 				A72092432A17F1F5003FFBDB /* LaunchScreen.storyboard */,
 				A72092462A17F1F5003FFBDB /* Info.plist */,
 				A720923E2A17F1F3003FFBDB /* sportify.xcdatamodeld */,
+				A72092722A183A4F003FFBDB /* EslamViewController.swift */,
 			);
 			path = sportify;
 			sourceTree = "<group>";
@@ -263,6 +272,9 @@
 			files = (
 				A720923A2A17F1F3003FFBDB /* ViewController.swift in Sources */,
 				A72092402A17F1F3003FFBDB /* sportify.xcdatamodeld in Sources */,
+				A72092732A183A4F003FFBDB /* EslamViewController.swift in Sources */,
+				A720926D2A181A08003FFBDB /* OnBoardingPageController.swift in Sources */,
+				A720926F2A181A41003FFBDB /* OnBoardingViewController.swift in Sources */,
 				A72092362A17F1F3003FFBDB /* AppDelegate.swift in Sources */,
 				A72092382A17F1F3003FFBDB /* SceneDelegate.swift in Sources */,
 			);
@@ -443,6 +455,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sportify/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Sportify;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -470,6 +483,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sportify/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Sportify;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
