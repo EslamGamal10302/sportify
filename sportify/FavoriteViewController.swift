@@ -17,6 +17,12 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("will appear")
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        tabBarController?.tabBar.isHidden = false
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -48,6 +54,11 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("search changed")
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let teamDetails = self.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
+        self.navigationController?.pushViewController(teamDetails, animated: true)
     }
     
 }
