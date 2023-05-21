@@ -55,7 +55,11 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         print("search changed")
     }
 
-  
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let leagueDetailsView = self.storyboard?.instantiateViewController(identifier: "leaguesDetails")
+        as! LeagueDetailsViewController
+        self.navigationController?.pushViewController(leagueDetailsView, animated: true)
+    }
 
 
 }
