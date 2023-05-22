@@ -10,8 +10,6 @@ import UIKit
 class HomeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var homeImage: UIImageView!
-    
-    
     @IBOutlet weak var homeLabel: UILabel!
     
     

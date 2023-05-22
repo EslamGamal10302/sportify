@@ -7,13 +7,24 @@
 
 import UIKit
 
-class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout,HomeViewProtocol {
+   
+    
     var sportsAray:[HomeGames]?
+    var homeProtocol : HomePresenterProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Dead Load")
-        createHomedata()
+        sportsAray = [HomeGames]()
+        homeProtocol = HomePresenter(homeScreen: self)
+        homeProtocol?.createHomeScreenGamesDetails()
     }
+    
+    
+    func showScreenDetails(details: [HomeGames]) {
+       sportsAray = details
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         print("will appear")
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -22,17 +33,15 @@ class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlo
 
   
 
-    // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+     
         print("here")
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+     
         print("here")
         return sportsAray?.count ?? 0
     }
@@ -62,13 +71,7 @@ class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlo
         return UIEdgeInsets(top: 1, left: 10, bottom: 1, right: 10)
     }
     
-    func createHomedata(){
-        sportsAray = [HomeGames]()
-        self.sportsAray?.append(HomeGames(image: UIImage(named: "football")!, title: "Football"))
-        self.sportsAray?.append(HomeGames(image: UIImage(named: "basket")!, title: "Basketball"))
-        self.sportsAray?.append(HomeGames(image: UIImage(named: "tennis")!, title: "Tennis"))
-        self.sportsAray?.append(HomeGames(image: UIImage(named: "craket")!, title: "Cricket"))
-    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch(indexPath.row){
@@ -85,35 +88,5 @@ class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlo
         }
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
