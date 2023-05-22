@@ -7,32 +7,52 @@
 
 import UIKit
 
-class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
+class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,LeaguesViewProtocol {
     
+    
+  
+    var leaguesArray:[League]?
     @IBOutlet weak var searchBar: UISearchBar!
-
     @IBOutlet weak var myTable: UITableView!
-    
-    
+    var leaguesPresenter : LeaguesPresenterProtocol?
+    var sportType : String?
+    let networkIndicator=UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
+        leaguesArray=[League]()
+        networkIndicator.color=UIColor(named: "button")
+        networkIndicator.center=view.center
+        view.addSubview(networkIndicator)
+        leaguesPresenter = LeaguesPresenter(leaguesScreen: self,networkService: NetworkService.getInstance)
+        leaguesPresenter?.getAllLeaguesDetails(leagueName: sportType!)
 
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = true
     }
+    func updateTable(data: [League]) {
+        self.leaguesArray = data
+        self.myTable.reloadData()
+    }
+    func startLoadingAnimation() {
+        self.networkIndicator.startAnimating()
+    }
+    
+    func endLoadingAnimation() {
+        self.networkIndicator.stopAnimating()
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        50
+        return leaguesArray?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         as! LeaguesViewCell
-        cell.leagues_title.text="Primary League"
+        cell.leagues_title.text=leaguesArray?[indexPath.row].league_name
         cell.leagues_image.image=UIImage(named: "craket")!
         cell.leagues_image.layer.cornerRadius = cell.leagues_image.frame.size.width / 2
         cell.leagues_image.clipsToBounds = true
