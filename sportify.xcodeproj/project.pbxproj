@@ -35,6 +35,10 @@
 		A7ED03742A1BF214003958C0 /* WelcomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED03732A1BF214003958C0 /* WelcomePresenter.swift */; };
 		A7ED03762A1BF228003958C0 /* WelcomePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED03752A1BF228003958C0 /* WelcomePresenterProtocol.swift */; };
 		A7ED03782A1BF68D003958C0 /* WelcomeViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED03772A1BF68D003958C0 /* WelcomeViewProtocol.swift */; };
+		A7ED037A2A1BFD19003958C0 /* OnBoardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED03792A1BFD19003958C0 /* OnBoardingPresenter.swift */; };
+		A7ED037C2A1BFD2A003958C0 /* OnBoardingPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED037B2A1BFD2A003958C0 /* OnBoardingPresenterProtocol.swift */; };
+		A7ED037E2A1BFDEC003958C0 /* OnBoardingPageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED037D2A1BFDEC003958C0 /* OnBoardingPageProtocol.swift */; };
+		A7ED03812A1C011F003958C0 /* OnBoardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED03802A1C011F003958C0 /* OnBoardScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,10 @@
 		A7ED03732A1BF214003958C0 /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
 		A7ED03752A1BF228003958C0 /* WelcomePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenterProtocol.swift; sourceTree = "<group>"; };
 		A7ED03772A1BF68D003958C0 /* WelcomeViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewProtocol.swift; sourceTree = "<group>"; };
+		A7ED03792A1BFD19003958C0 /* OnBoardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPresenter.swift; sourceTree = "<group>"; };
+		A7ED037B2A1BFD2A003958C0 /* OnBoardingPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPresenterProtocol.swift; sourceTree = "<group>"; };
+		A7ED037D2A1BFDEC003958C0 /* OnBoardingPageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageProtocol.swift; sourceTree = "<group>"; };
+		A7ED03802A1C011F003958C0 /* OnBoardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +247,7 @@
 		A7ED03602A1BEDDD003958C0 /* onBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				A7ED037F2A1C00F4003958C0 /* model */,
 				A7ED03662A1BEFA5003958C0 /* presenter */,
 				A7ED03652A1BEF96003958C0 /* view */,
 			);
@@ -280,6 +289,7 @@
 			children = (
 				A720926E2A181A41003FFBDB /* OnBoardingViewController.swift */,
 				A720926C2A181A08003FFBDB /* OnBoardingPageController.swift */,
+				A7ED037D2A1BFDEC003958C0 /* OnBoardingPageProtocol.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -287,6 +297,8 @@
 		A7ED03662A1BEFA5003958C0 /* presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A7ED03792A1BFD19003958C0 /* OnBoardingPresenter.swift */,
+				A7ED037B2A1BFD2A003958C0 /* OnBoardingPresenterProtocol.swift */,
 			);
 			path = presenter;
 			sourceTree = "<group>";
@@ -390,6 +402,14 @@
 			children = (
 			);
 			path = presenter;
+			sourceTree = "<group>";
+		};
+		A7ED037F2A1C00F4003958C0 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A7ED03802A1C011F003958C0 /* OnBoardScreen.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,6 +545,8 @@
 			files = (
 				A720923A2A17F1F3003FFBDB /* ViewController.swift in Sources */,
 				A7ED03742A1BF214003958C0 /* WelcomePresenter.swift in Sources */,
+				A7ED037A2A1BFD19003958C0 /* OnBoardingPresenter.swift in Sources */,
+				A7ED03812A1C011F003958C0 /* OnBoardScreen.swift in Sources */,
 				A722D0A02A1A906E009A7B52 /* UpcomingViewCell.swift in Sources */,
 				A72092402A17F1F3003FFBDB /* sportify.xcdatamodeld in Sources */,
 				A7B1EB5F2A191BCC00D3EF9B /* HomeViewController.swift in Sources */,
@@ -533,6 +555,8 @@
 				A720926F2A181A41003FFBDB /* OnBoardingViewController.swift in Sources */,
 				A7B1EB632A192A9600D3EF9B /* HomeCollectionViewCell.swift in Sources */,
 				A7347C492A19735B00A131D5 /* LeaguesViewCell.swift in Sources */,
+				A7ED037E2A1BFDEC003958C0 /* OnBoardingPageProtocol.swift in Sources */,
+				A7ED037C2A1BFD2A003958C0 /* OnBoardingPresenterProtocol.swift in Sources */,
 				A72092362A17F1F3003FFBDB /* AppDelegate.swift in Sources */,
 				A7B1EB612A191E3800D3EF9B /* FavoriteViewController.swift in Sources */,
 				A7347C452A19583300A131D5 /* FavoriteViewCell.swift in Sources */,
