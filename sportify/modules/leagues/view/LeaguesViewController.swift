@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,LeaguesViewProtocol {
     
@@ -53,7 +54,7 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         as! LeaguesViewCell
         cell.leagues_title.text=leaguesArray?[indexPath.row].league_name
-        cell.leagues_image.image=UIImage(named: "craket")!
+        cell.leagues_image.sd_setImage(with: URL(string: (leaguesArray?[indexPath.row].league_logo) ?? ""), placeholderImage: UIImage(named: "empty"))
         cell.leagues_image.layer.cornerRadius = cell.leagues_image.frame.size.width / 2
         cell.leagues_image.clipsToBounds = true
         cell.container.layer.cornerRadius = 20

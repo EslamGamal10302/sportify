@@ -7,6 +7,7 @@ target 'sportify' do
 
   # Pods for sportify
 pod 'Alamofire'
+pod 'SDWebImage', '~> 5.0'
 
   target 'sportifyTests' do
     inherit! :search_paths
