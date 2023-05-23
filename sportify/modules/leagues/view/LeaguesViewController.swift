@@ -14,7 +14,6 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var myTable: UITableView!
     var leaguesPresenter : LeaguesPresenterProtocol?
-    var sportType : String?
     let networkIndicator=UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +22,7 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         networkIndicator.color=UIColor(named: "button")
         networkIndicator.center=view.center
         view.addSubview(networkIndicator)
-        leaguesPresenter = LeaguesPresenter(leaguesScreen: self,networkService: NetworkService.getInstance)
-        leaguesPresenter?.getAllLeaguesDetails(leagueName: sportType!)
+        leaguesPresenter?.getAllLeaguesDetails()
 
     }
     override func viewWillAppear(_ animated: Bool) {

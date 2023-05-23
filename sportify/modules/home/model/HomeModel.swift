@@ -11,5 +11,6 @@ import UIKit
 struct HomeGames {
     var image:UIImage
     var title:String
+    var key:String
 
 }

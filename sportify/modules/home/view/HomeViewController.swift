@@ -74,28 +74,9 @@ class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlo
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch(indexPath.row){
-        case 0 :
-            print("football")
-            let leaguesView = self.storyboard?.instantiateViewController(identifier: "leagues") as! LeaguesViewController
-            leaguesView.sportType="football"
-            self.navigationController?.pushViewController(leaguesView, animated: true)
-        case 1:
-            print("basket")
-            let leaguesView = self.storyboard?.instantiateViewController(identifier: "leagues") as! LeaguesViewController
-            leaguesView.sportType="basketball"
-            self.navigationController?.pushViewController(leaguesView, animated: true)
-        case 2 :
-            print("tennis")
-            let leaguesView = self.storyboard?.instantiateViewController(identifier: "leagues") as! LeaguesViewController
-            leaguesView.sportType="tennis"
-            self.navigationController?.pushViewController(leaguesView, animated: true)
-        default :
-            print("cracket")
-            let leaguesView = self.storyboard?.instantiateViewController(identifier: "leagues") as! LeaguesViewController
-            leaguesView.sportType="cricket"
-            self.navigationController?.pushViewController(leaguesView, animated: true)
-        }
+        let sportKey = sportsAray![indexPath.row].key
+        homeProtocol?.navigateToSportLeaguesScreen(sportKey: sportKey, screen: self)  
+        
     }
 
 

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol HomePresenterProtocol {
     func createHomeScreenGamesDetails()
+    func navigateToSportLeaguesScreen(sportKey:String,screen:UIViewController)
 }

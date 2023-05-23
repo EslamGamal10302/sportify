@@ -11,14 +11,17 @@ class LeaguesPresenter:LeaguesPresenterProtocol {
     var leaguesScreen:LeaguesViewProtocol?
     var networkService:NetworkServiceProtocol?
     var networkDataResponse : [League]!
-    init(leaguesScreen: LeaguesViewProtocol? = nil, networkService: NetworkServiceProtocol? = nil) {
+    var sportKey:String?
+    init(leaguesScreen: LeaguesViewProtocol? = nil, networkService: NetworkServiceProtocol? = nil,sportKey:String) {
         self.leaguesScreen = leaguesScreen
         self.networkService = networkService
+        self.sportKey=sportKey
     }
     
-    func getAllLeaguesDetails(leagueName:String) {
+    func getAllLeaguesDetails() {
+       print(sportKey!)
         self.leaguesScreen?.startLoadingAnimation()
-        self.networkService?.getSportAllLeaguesData(leagueName: leagueName, completion: { [weak self] leaguesResponse in
+        self.networkService?.getSportAllLeaguesData(leagueName: sportKey!, completion: { [weak self] leaguesResponse in
             self?.leaguesScreen?.endLoadingAnimation()
             self?.networkDataResponse=leaguesResponse
             self?.leaguesScreen!.updateTable(data: leaguesResponse ?? [League]())

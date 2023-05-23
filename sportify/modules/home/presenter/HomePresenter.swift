@@ -18,13 +18,19 @@ class HomePresenter:HomePresenterProtocol {
     
     func createHomeScreenGamesDetails(){
         var sportsAray = [HomeGames]()
-        sportsAray.append(HomeGames(image: UIImage(named: "football")!, title: "Football"))
-        sportsAray.append(HomeGames(image: UIImage(named: "basket")!, title: "Basketball"))
-        sportsAray.append(HomeGames(image: UIImage(named: "tennis")!, title: "Tennis"))
-        sportsAray.append(HomeGames(image: UIImage(named: "craket")!, title: "Cricket"))
+        sportsAray.append(HomeGames(image: UIImage(named: "football")!, title: "Football", key: "football"))
+        sportsAray.append(HomeGames(image: UIImage(named: "basket")!, title: "Basketball", key: "basketball"))
+        sportsAray.append(HomeGames(image: UIImage(named: "tennis")!, title: "Tennis", key: "tennis"))
+        sportsAray.append(HomeGames(image: UIImage(named: "craket")!, title: "Cricket", key: "cricket"))
         self.homeScreen?.showScreenDetails(details: sportsAray)
     }
     
+    func navigateToSportLeaguesScreen(sportKey: String, screen: UIViewController) {
+        let leaguesView = screen.storyboard?.instantiateViewController(identifier: "leagues") as! LeaguesViewController
+        let leaguesPresenter =  LeaguesPresenter(leaguesScreen: leaguesView,networkService: NetworkService.getInstance,sportKey: sportKey)
+        leaguesView.leaguesPresenter=leaguesPresenter
+        screen.navigationController?.pushViewController(leaguesView, animated: true)
+    }
     
     
 }
