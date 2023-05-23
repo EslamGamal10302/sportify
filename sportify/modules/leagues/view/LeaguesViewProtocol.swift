@@ -11,4 +11,6 @@ protocol LeaguesViewProtocol{
     func updateTable(data : [League])
     func startLoadingAnimation()
     func endLoadingAnimation()
+    func searchInLeaguesResults(result : [League])
+    func endSearching(result :[League])
 }

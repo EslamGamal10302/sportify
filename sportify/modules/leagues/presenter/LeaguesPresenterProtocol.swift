@@ -9,4 +9,6 @@ import Foundation
 
 protocol LeaguesPresenterProtocol{
     func getAllLeaguesDetails(leagueName:String)
+    func searchInLeagues(with characters:String)
+    func endSearching()
 }
