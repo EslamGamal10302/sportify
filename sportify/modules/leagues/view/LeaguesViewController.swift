@@ -18,8 +18,11 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var leaguesPresenter : LeaguesPresenterProtocol?
     var sportType : String?
     let networkIndicator=UIActivityIndicatorView(style: .large)
+    var isSearching = false
+    var filteredLeaguesArray = [League]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate=self
         leaguesArray=[League]()
         networkIndicator.color=UIColor(named: "button")
         networkIndicator.center=view.center
@@ -47,19 +50,35 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leaguesArray?.count ?? 0
+        if isSearching {
+           return filteredLeaguesArray.count
+        }else {
+            return leaguesArray?.count ?? 0
+        }
+  
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         as! LeaguesViewCell
-        cell.leagues_title.text=leaguesArray?[indexPath.row].league_name
-        cell.leagues_image.sd_setImage(with: URL(string: (leaguesArray?[indexPath.row].league_logo) ?? ""), placeholderImage: UIImage(named: "empty"))
-        cell.leagues_image.layer.cornerRadius = cell.leagues_image.frame.size.width / 2
-        cell.leagues_image.clipsToBounds = true
-        cell.container.layer.cornerRadius = 20
-        cell.layer.masksToBounds = true
-        return cell
+        
+        if isSearching {
+            cell.leagues_title.text=filteredLeaguesArray[indexPath.row].league_name
+            cell.leagues_image.sd_setImage(with: URL(string: (filteredLeaguesArray[indexPath.row].league_logo) ?? ""), placeholderImage: UIImage(named: "empty"))
+            cell.leagues_image.layer.cornerRadius = cell.leagues_image.frame.size.width / 2
+            cell.leagues_image.clipsToBounds = true
+            cell.container.layer.cornerRadius = 20
+            cell.layer.masksToBounds = true
+            return cell
+        }else {
+            cell.leagues_title.text=leaguesArray?[indexPath.row].league_name
+            cell.leagues_image.sd_setImage(with: URL(string: (leaguesArray?[indexPath.row].league_logo) ?? ""), placeholderImage: UIImage(named: "empty"))
+            cell.leagues_image.layer.cornerRadius = cell.leagues_image.frame.size.width / 2
+            cell.leagues_image.clipsToBounds = true
+            cell.container.layer.cornerRadius = 20
+            cell.layer.masksToBounds = true
+            return cell
+        }
     }
     
     
@@ -74,6 +93,28 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("search changed")
+        if searchText.count > 0 {
+              self.isSearching = true
+            self.filteredLeaguesArray = self.leaguesArray!.filter({ league in
+                return league.league_name!.contains(searchText.replacingOccurrences(of: " ", with: ""))
+            })
+          } else {
+              self.isSearching = false
+              self.filteredLeaguesArray = []
+          }
+          
+          self.myTable.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("keyboard")
+        searchBar.resignFirstResponder()
+    }
+    
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touchkeyboard")
+        self.view.endEditing(true)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
