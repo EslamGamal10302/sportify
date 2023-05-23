@@ -35,19 +35,8 @@ class ViewController: UIViewController,WelcomeViewProtocol {
         UIView.animate(withDuration: 1,animations: {  self.launchLabel.alpha=1}){
             completion in
                if completion {
-                   let userDefault=UserDefaults.standard
-                   if userDefault.bool(forKey: "loginBefore") {
-                       let home = self.storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-                       home.modalPresentationStyle = .fullScreen
-                       home.modalTransitionStyle = .crossDissolve
-                       self.present(home, animated: true)
-                   } else {
-                       let splashView = self.storyboard?.instantiateViewController(identifier: "page") as! OnBoardingPageController
-                       splashView.modalPresentationStyle = .fullScreen
-                       splashView.modalTransitionStyle =   .crossDissolve
-                       self.present(splashView,animated: true,completion: nil)
-                   }
-                   
+                  
+                   self.welcomeProtocol?.NavigationToNextScreen(screen: self)
                 
                }
         }

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol WelcomePresenterProtocol{
     func startAnimation()
+    func NavigationToNextScreen(screen : UIViewController)
 }

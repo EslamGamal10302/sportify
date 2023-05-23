@@ -79,6 +79,9 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             leaguesPresenter?.searchInLeagues(with: searchText)
           } else {
               leaguesPresenter?.endSearching()
+              DispatchQueue.main.async {
+                  searchBar.resignFirstResponder()
+              }
           }
     }
  

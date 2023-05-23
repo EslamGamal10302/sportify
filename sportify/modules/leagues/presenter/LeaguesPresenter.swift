@@ -26,9 +26,6 @@ class LeaguesPresenter:LeaguesPresenterProtocol {
     }
     
     func searchInLeagues(with characters: String) {
-       /* self.filteredLeaguesArray = self.leaguesArray!.filter({ league in
-            return league.league_name!.contains(searchText.replacingOccurrences(of: " ", with: ""))
-        }) */
         let filteredArray=self.networkDataResponse.filter { league in
             return league.league_name!.contains(characters.replacingOccurrences(of: " ", with: ""))
         }
@@ -36,7 +33,6 @@ class LeaguesPresenter:LeaguesPresenterProtocol {
     }
     
     func endSearching() {
-        //   self.filteredLeaguesArray = []
         leaguesScreen?.endSearching(result: networkDataResponse)
     }
 
