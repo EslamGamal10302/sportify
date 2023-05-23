@@ -99,9 +99,7 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let leagueDetailsView = self.storyboard?.instantiateViewController(identifier: "leaguesDetails")
-        as! LeagueDetailsViewController
-        self.navigationController?.pushViewController(leagueDetailsView, animated: true)
+        leaguesPresenter?.navigateToLeagueDetailsScreen(leagueID: (leaguesArray?[indexPath.row].league_key)!, view: self)
     }
 
 

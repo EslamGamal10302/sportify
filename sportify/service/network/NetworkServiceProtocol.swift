@@ -7,5 +7,8 @@
 
 import Foundation
 protocol NetworkServiceProtocol {
-    func getSportAllLeaguesData(leagueName:String,completion : @escaping ([League]?)-> Void)
+    func getSportAllLeaguesData(sportName:String,completion : @escaping ([League]?)-> Void)
+    func getLeagueUpcomingFixtures(sportName:String,leagueId:Int,completion : @escaping ([Upcoming]?)-> Void)
+    func getLeagueLatestResults(sportName:String,leagueId:Int,completion : @escaping ([LatestResult]?)-> Void)
+    func getLeagueTeams(sportName:String,leagueId:Int,completion : @escaping ([Team]?)-> Void)
 }

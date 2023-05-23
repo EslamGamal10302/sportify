@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LeaguesPresenterProtocol{
     func getAllLeaguesDetails()
     func searchInLeagues(with characters:String)
     func endSearching()
+    func navigateToLeagueDetailsScreen(leagueID:Int,view:UIViewController)
 }

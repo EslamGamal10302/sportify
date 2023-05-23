@@ -6,16 +6,37 @@
 //
 
 import UIKit
+import SDWebImage
 
-class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
+class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,LeagueDetailsViewProtocol {
+    func updateUpcomingFixtures(fixtures: [Upcoming]) {
+        self.upcommingArray=fixtures
+        self.upcomingCollection.reloadData()
+    }
+    
+    func updateLatestResult(results: [LatestResult]) {
+        self.resultsArray=results
+        self.latestResultTable.reloadData()
+    }
+    
+    func updateAllTeams(teams: [Team]) {
+        self.teamsArray=teams
+        self.TeamesTable.reloadData()
+    }
+    
    
     
     @IBOutlet weak var upcomingCollection: UICollectionView!
     @IBOutlet weak var latestResultTable: UITableView!
     @IBOutlet weak var TeamesTable: UICollectionView!
+    var upcommingArray=[Upcoming]()
+    var resultsArray=[LatestResult]()
+    var teamsArray=[Team]()
+    var leagueDetailPresenter:LeagueDetailsPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        leagueDetailPresenter?.getScreendata()
 
     }
     
@@ -32,9 +53,9 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == upcomingCollection {
-            return 10
+            return self.upcommingArray.count
         }else {
-            return 10
+            return self.teamsArray.count
         }
     }
     
@@ -44,20 +65,20 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         
         if collectionView == upcomingCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as!UpcomingViewCell
-            cell.homeTeamImage.image=UIImage(named: "craket")
+            cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
             cell.homeTeamImage.layer.cornerRadius = cell.homeTeamImage.frame.size.width / 2
-            cell.homeTeamName.text="Barcelona"
-            cell.awayTeamImage.image=UIImage(named: "craket")
+            cell.homeTeamName.text=upcommingArray[indexPath.row].event_home_team
+            cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
             cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
-            cell.awayTeamName.text="Al-Ahly"
-            cell.matchDate.text="05-06-2023"
-            cell.matchTime.text="21:00"
+            cell.awayTeamName.text=upcommingArray[indexPath.row].event_away_team
+            cell.matchDate.text=upcommingArray[indexPath.row].event_date
+            cell.matchTime.text=upcommingArray[indexPath.row].event_time
             cell.layer.cornerRadius = 20
              cell.layer.masksToBounds = true
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamsCell", for: indexPath) as! TeamsViewCell
-            cell.teamImage.image=UIImage(named: "splash")
+            cell.teamImage.sd_setImage(with: URL(string: teamsArray[indexPath.row].team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
             return cell
         }
         
@@ -107,21 +128,21 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
 
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        return resultsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LatestResultsViewCell
-        cell.homeTeamImage.image=UIImage(named: "craket")
+        cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
         cell.homeTeamImage.layer.cornerRadius = cell.homeTeamImage.frame.size.width / 2
-        cell.homeTeamName.text="Barcelona"
-        cell.awayTeamImage.image=UIImage(named: "craket")
+        cell.homeTeamName.text=resultsArray[indexPath.row].event_home_team
+        cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
         cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
-        cell.awayTeamName.text="Al-Ahly"
-        cell.totalResult.text="2-2"
+        cell.awayTeamName.text=resultsArray[indexPath.row].event_away_team
+        cell.totalResult.text=resultsArray[indexPath.row].event_final_result
         cell.container.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         return cell

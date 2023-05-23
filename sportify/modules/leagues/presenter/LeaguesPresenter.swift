@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 class LeaguesPresenter:LeaguesPresenterProtocol {
+    
+    
     var leaguesScreen:LeaguesViewProtocol?
     var networkService:NetworkServiceProtocol?
     var networkDataResponse : [League]!
@@ -21,7 +24,7 @@ class LeaguesPresenter:LeaguesPresenterProtocol {
     func getAllLeaguesDetails() {
        print(sportKey!)
         self.leaguesScreen?.startLoadingAnimation()
-        self.networkService?.getSportAllLeaguesData(leagueName: sportKey!, completion: { [weak self] leaguesResponse in
+        self.networkService?.getSportAllLeaguesData(sportName: sportKey!, completion: { [weak self] leaguesResponse in
             self?.leaguesScreen?.endLoadingAnimation()
             self?.networkDataResponse=leaguesResponse
             self?.leaguesScreen!.updateTable(data: leaguesResponse ?? [League]())
@@ -37,6 +40,13 @@ class LeaguesPresenter:LeaguesPresenterProtocol {
     
     func endSearching() {
         leaguesScreen?.endSearching(result: networkDataResponse)
+    }
+    func navigateToLeagueDetailsScreen(leagueID: Int, view: UIViewController) {
+        let leagueDetailsView = view.storyboard?.instantiateViewController(identifier: "leaguesDetails")
+        as! LeagueDetailsViewController
+        let leagueDetailsPresenter = LeagueDetailsPresenter(sportType: sportKey!, leagueId: leagueID, view: leagueDetailsView, networkService: NetworkService.getInstance)
+        leagueDetailsView.leagueDetailPresenter = leagueDetailsPresenter
+        view.navigationController?.pushViewController(leagueDetailsView, animated: true)
     }
 
     
