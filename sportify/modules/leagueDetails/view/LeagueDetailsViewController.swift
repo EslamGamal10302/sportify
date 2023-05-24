@@ -206,9 +206,9 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     func showNavigationAlertError() {
         let alert = UIAlertController(title: "Unexpected Error", message: "There are no details for the selected team", preferredStyle: .alert)
            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
-           let attributedTitle = NSAttributedString(string: "Unexpected Error", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")])
+        let attributedTitle = NSAttributedString(string: "Unexpected Error", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
            alert.setValue(attributedTitle, forKey: "attributedTitle")
-           let attributedMessage = NSAttributedString(string: "There are no details for the selected team", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")])
+        let attributedMessage = NSAttributedString(string: "There are no details for the selected team", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
            alert.setValue(attributedMessage, forKey: "attributedMessage")
            present(alert, animated: true)
            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
