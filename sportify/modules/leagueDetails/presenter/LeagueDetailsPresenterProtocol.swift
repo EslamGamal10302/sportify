@@ -12,7 +12,7 @@ protocol LeagueDetailsPresenterProtocol{
     func getUpcomingFixture()
     func getLatestResults()
     func getLeagueTeams()
-    func getSportType()->String
+    func getSportType()->String  // must deleted
     func prepareUpcomingFixtureData(data:[Upcoming]?)->[UpcomingFixtureDisplayedData]?
     func prepareLatestGamesData(data:[LatestResult]?)->[LatestResultDisplayedData]?
     func prepareTeamsData(data:[Team]?)->[TeamDisplayedData]?

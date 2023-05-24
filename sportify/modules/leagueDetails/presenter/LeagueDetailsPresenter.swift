@@ -7,6 +7,49 @@
 
 import Foundation
 class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
+    
+    var sportType:String
+    var leagueId:Int
+    var view:LeagueDetailsViewProtocol
+    var networkService:NetworkServiceProtocol
+    
+    init(sportType: String, leagueId: Int, view: LeagueDetailsViewProtocol, networkService: NetworkServiceProtocol) {
+        self.sportType = sportType
+        self.leagueId = leagueId
+        self.view = view
+        self.networkService = networkService
+        print(sportType)
+        print(leagueId)
+    }
+    
+    func getUpcomingFixture() {
+        networkService.getLeagueUpcomingFixtures(sportName: sportType, leagueId: leagueId) { [weak self] response in
+            let upcomingData = self?.prepareUpcomingFixtureData(data: response)
+            self?.view.updateUpcomingFixtures(fixtures: upcomingData ?? [])
+        }
+    }
+    
+    func getLatestResults() {
+        networkService.getLeagueLatestResults(sportName: sportType, leagueId: leagueId) { [weak self] response in
+            let resultData = self?.prepareLatestGamesData(data: response)
+            self?.view.updateLatestResult(results: resultData ?? [])
+        }
+    }
+    
+    func getLeagueTeams() {
+        networkService.getLeagueTeams(sportName: sportType, leagueId: leagueId) { [weak self] response in
+            let teamsResult = self?.prepareTeamsData(data: response)
+            self?.view.updateAllTeams(teams: teamsResult ?? [])
+        }
+    }
+    
+  
+    func getScreendata() {
+        self.getUpcomingFixture()
+        self.getLatestResults()
+        self.getLeagueTeams()
+    }
+    
     func prepareLatestGamesData(data: [LatestResult]?) -> [LatestResultDisplayedData]? {
         if let recivedData = data {
             var dataArray=[LatestResultDisplayedData]()
@@ -65,48 +108,6 @@ class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
     
     func getSportType() -> String {
         return sportType
-    }
-    
-    func getUpcomingFixture() {
-        networkService.getLeagueUpcomingFixtures(sportName: sportType, leagueId: leagueId) { [weak self] response in
-         //   self?.view.updateUpcomingFixtures(fixtures: response ?? [])
-            let upcomingData = self?.prepareUpcomingFixtureData(data: response)
-            self?.view.updateUpcomingFixtures(fixtures: upcomingData ?? [])
-        }
-    }
-    
-    func getLatestResults() {
-        networkService.getLeagueLatestResults(sportName: sportType, leagueId: leagueId) { [weak self] response in
-          //  self?.view.updateLatestResult(results: response ?? [])
-            let resultData = self?.prepareLatestGamesData(data: response)
-            self?.view.updateLatestResult(results: resultData ?? [])
-        }
-    }
-    
-    func getLeagueTeams() {
-        networkService.getLeagueTeams(sportName: sportType, leagueId: leagueId) { [weak self] response in
-           // self?.view.updateAllTeams(teams: response ?? [])
-            let teamsResult = self?.prepareTeamsData(data: response)
-            self?.view.updateAllTeams(teams: teamsResult ?? [])
-        }
-    }
-    
-    var sportType:String
-    var leagueId:Int
-    var view:LeagueDetailsViewProtocol
-    var networkService:NetworkServiceProtocol
-    init(sportType: String, leagueId: Int, view: LeagueDetailsViewProtocol, networkService: NetworkServiceProtocol) {
-        self.sportType = sportType
-        self.leagueId = leagueId
-        self.view = view
-        self.networkService = networkService
-        print(sportType)
-        print(leagueId)
-    }
-    func getScreendata() {
-        self.getUpcomingFixture()
-        self.getLatestResults()
-        self.getLeagueTeams()
     }
    
     

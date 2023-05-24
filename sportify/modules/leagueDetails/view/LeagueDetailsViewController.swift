@@ -9,22 +9,6 @@ import UIKit
 import SDWebImage
 
 class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,LeagueDetailsViewProtocol {
-    func updateUpcomingFixtures(fixtures: [UpcomingFixtureDisplayedData]) {
-        self.upcommingArray=fixtures
-        self.upcomingCollection.reloadData()
-    }
-    
-    func updateLatestResult(results: [LatestResultDisplayedData]) {
-        self.resultsArray=results
-        self.latestResultTable.reloadData()
-    }
-    
-    func updateAllTeams(teams: [TeamDisplayedData]) {
-        self.teamsArray=teams
-        self.TeamesTable.reloadData()
-    }
-    
-   
     
     @IBOutlet weak var upcomingCollection: UICollectionView!
     @IBOutlet weak var latestResultTable: UITableView!
@@ -38,7 +22,7 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         leagueDetailPresenter?.getScreendata()
-        sportType = leagueDetailPresenter?.getSportType()
+        sportType = leagueDetailPresenter?.getSportType()   // must delted
 
     }
     
@@ -67,56 +51,12 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         
         if collectionView == upcomingCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as!UpcomingViewCell
-            
-            
-            
-          /*  if sportType == "football"{
-                cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-            } else if sportType == "tennis"{
-                cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].event_first_player_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-            } else {
-                cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-            }*/
             cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].FirstTeamImage ?? ""), placeholderImage: UIImage(named: "empty"))
             cell.homeTeamImage.layer.cornerRadius = cell.homeTeamImage.frame.size.width / 2
-          /*  if sportType == "tennis"{
-                cell.homeTeamName.text=upcommingArray[indexPath.row].event_first_player
-            }else{
-                cell.homeTeamName.text=upcommingArray[indexPath.row].event_home_team
-            } */
             cell.homeTeamName.text=upcommingArray[indexPath.row].FirstTeamName
-            
-            
-            
-            
-            
-          /*  if sportType == "football"{
-                cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-            } else if sportType == "tennis"{
-                cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].event_second_player_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-            } else {
-                cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-            }*/
             cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].SecondTeamImage ?? ""), placeholderImage: UIImage(named: "empty"))
             cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
-            
-          /*  if sportType == "tennis"{
-                cell.awayTeamName.text=upcommingArray[indexPath.row].event_second_player
-            } else{
-                cell.awayTeamName.text=upcommingArray[indexPath.row].event_away_team
-            } */
             cell.awayTeamName.text=upcommingArray[indexPath.row].SecondTeamName
-            
-            
-            
-            
-            
-            
-          /*  if sportType == "cricket"{
-                cell.matchDate.text=upcommingArray[indexPath.row].event_date_start
-            }else {
-                cell.matchDate.text=upcommingArray[indexPath.row].event_date
-            }*/
             cell.matchDate.text=upcommingArray[indexPath.row].MatchDate
             cell.matchTime.text=upcommingArray[indexPath.row].MatchTime
             cell.layer.cornerRadius = 20
@@ -124,7 +64,6 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamsCell", for: indexPath) as! TeamsViewCell
-           // cell.teamImage.layer.cornerRadius = cell.teamImage.frame.size.width/2
             cell.teamImage.sd_setImage(with: URL(string: teamsArray[indexPath.row].teamLogo ?? ""), placeholderImage: UIImage(named: "empty"))
             return cell
         }
@@ -169,10 +108,7 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
             return UIEdgeInsets(top: 1, left: 10, bottom: 1, right: 10)
         
         }
-    
     }
-    
-
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -183,56 +119,13 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LatestResultsViewCell
-        
-      /*  if sportType == "football"{
-            cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-        } else if sportType == "tennis" {
-            cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].event_first_player_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-        }else {
-            cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-        }*/
-        
         cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].FirstTeamImage ?? ""), placeholderImage: UIImage(named: "empty"))
         cell.homeTeamImage.layer.cornerRadius = cell.homeTeamImage.frame.size.width / 2
-        
-      /*  if sportType == "tennis"{
-            cell.homeTeamName.text=resultsArray[indexPath.row].event_first_player
-        }else {
-            cell.homeTeamName.text=resultsArray[indexPath.row].event_home_team
-        }*/
         cell.homeTeamName.text=resultsArray[indexPath.row].FirstTeamName
-    
-        
-      /*  if sportType == "football"{
-            cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-        } else if sportType == "tennis"{
-            cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].event_second_player_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-            
-        }else{
-            cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
-        }*/
         cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].SecondTeamImage ?? ""), placeholderImage: UIImage(named: "empty"))
         cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
-        
-        
-      /*  if sportType == "tennis"{
-            cell.awayTeamName.text=resultsArray[indexPath.row].event_second_player
-        }else{
-            cell.awayTeamName.text=resultsArray[indexPath.row].event_away_team
-        }*/
         cell.awayTeamName.text=resultsArray[indexPath.row].SecondTeamName
-      
-        
-        
-       /* if sportType == "cricket"{
-            cell.totalResult.text=resultsArray[indexPath.row].event_home_final_result
-        }else{
-            cell.totalResult.text=resultsArray[indexPath.row].event_final_result
-        }*/
         cell.totalResult.text=resultsArray[indexPath.row].matchResult
-    
-        
-        
         cell.container.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         return cell
@@ -241,6 +134,19 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    func updateUpcomingFixtures(fixtures: [UpcomingFixtureDisplayedData]) {
+        self.upcommingArray=fixtures
+        self.upcomingCollection.reloadData()
+    }
     
+    func updateLatestResult(results: [LatestResultDisplayedData]) {
+        self.resultsArray=results
+        self.latestResultTable.reloadData()
+    }
+    
+    func updateAllTeams(teams: [TeamDisplayedData]) {
+        self.teamsArray=teams
+        self.TeamesTable.reloadData()
+    }
     
 }
