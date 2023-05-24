@@ -166,7 +166,7 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     func setupLoadingIndicators(){
         let yOffset: CGFloat = -200
         upcomingNetworkIndicator.color=UIColor(named: "button")
-        upcomingNetworkIndicator.center=upcomingCollection.center
+        upcomingNetworkIndicator.center=CGPoint(x: self.upcomingCollection.bounds.width/2, y: self.upcomingCollection.bounds.height/2)
         upcomingCollection.addSubview(upcomingNetworkIndicator)
         upcomingNetworkIndicator.startAnimating()
         
@@ -178,8 +178,10 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         
         
         teamsNetworkIndicator.color=UIColor(named: "button")
-        teamsNetworkIndicator.center=TeamesTable.center
+        teamsNetworkIndicator.center=CGPoint(x: self.TeamesTable.bounds.width/2, y: self.TeamesTable.bounds.height/4)
         TeamesTable.addSubview(teamsNetworkIndicator)
+        teamsNetworkIndicator.isHidden = false
+        TeamesTable.bringSubviewToFront(teamsNetworkIndicator)
         teamsNetworkIndicator.startAnimating()
         
      
