@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
     
     var sportType:String
@@ -109,6 +110,15 @@ class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
     func getSportType() -> String {
         return sportType
     }
-   
+    func navigateToTeamDetailsScreen(teamId: Int, view: UIViewController) {
+        if sportType == "football" {
+       // navigation here
+            print("will navigate",teamId)
+        }else{
+          // send alert
+            self.view.showNavigationAlertError()
+            print("alert will apear")
+        }
+    }
     
 }

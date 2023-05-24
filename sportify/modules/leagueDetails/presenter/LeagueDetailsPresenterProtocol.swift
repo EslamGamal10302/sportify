@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LeagueDetailsPresenterProtocol{
     func getScreendata()
@@ -16,5 +17,6 @@ protocol LeagueDetailsPresenterProtocol{
     func prepareUpcomingFixtureData(data:[Upcoming]?)->[UpcomingFixtureDisplayedData]?
     func prepareLatestGamesData(data:[LatestResult]?)->[LatestResultDisplayedData]?
     func prepareTeamsData(data:[Team]?)->[TeamDisplayedData]?
+    func navigateToTeamDetailsScreen(teamId:Int,view:UIViewController)
     
 }

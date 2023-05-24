@@ -72,6 +72,11 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         }
         
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == TeamesTable {
+            self.leagueDetailPresenter?.navigateToTeamDetailsScreen(teamId: teamsArray[indexPath.row].teamId, view: self)
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == upcomingCollection {
@@ -198,6 +203,17 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
            msg.textColor=UIColor(named: "text")
            view.addSubview(msg)
     }
-   
+    func showNavigationAlertError() {
+        let alert = UIAlertController(title: "Unexpected Error", message: "There are no details for the selected team", preferredStyle: .alert)
+           alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+           let attributedTitle = NSAttributedString(string: "Unexpected Error", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+           let attributedMessage = NSAttributedString(string: "There are no details for the selected team", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+           present(alert, animated: true)
+           Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+               alert.dismiss(animated: true, completion: nil)
+           }
+    }
     
 }

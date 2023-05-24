@@ -10,5 +10,6 @@ protocol LeagueDetailsViewProtocol{
     func updateUpcomingFixtures(fixtures : [UpcomingFixtureDisplayedData])
     func updateLatestResult(results : [LatestResultDisplayedData])
     func updateAllTeams(teams : [TeamDisplayedData])
+    func showNavigationAlertError()
     
 }
