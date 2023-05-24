@@ -87,7 +87,16 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
             
             cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
             cell.awayTeamName.text=upcommingArray[indexPath.row].event_away_team
-            cell.matchDate.text=upcommingArray[indexPath.row].event_date
+            
+            if sportType == "cricket"{
+                cell.matchDate.text=upcommingArray[indexPath.row].event_date_start
+            }else {
+                cell.matchDate.text=upcommingArray[indexPath.row].event_date
+            }
+       
+            
+            
+            
             cell.matchTime.text=upcommingArray[indexPath.row].event_time
             cell.layer.cornerRadius = 20
              cell.layer.masksToBounds = true
@@ -172,7 +181,16 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         
         cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
         cell.awayTeamName.text=resultsArray[indexPath.row].event_away_team
-        cell.totalResult.text=resultsArray[indexPath.row].event_final_result
+        
+        
+        if sportType == "cricket"{
+            cell.totalResult.text=resultsArray[indexPath.row].event_home_final_result
+        }else{
+            cell.totalResult.text=resultsArray[indexPath.row].event_final_result
+        }
+    
+        
+        
         cell.container.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         return cell
