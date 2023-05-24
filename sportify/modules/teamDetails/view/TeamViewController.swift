@@ -22,11 +22,10 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var team_coach: UILabel!
     var teamDetailsPresentr : TeamDetailsPresenterProtocol?
     var playersArray = [TeamPlayerDisplay]()
+    let networkLoadingIndicator=UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   self.team_name.text="Barcelona"
-      //  self.team_coach.text="Eslam Gamal"
-   //     self.team_image.image=UIImage(named: "one")
+        setupLoadingIndicator()
         self.teamDetailsPresentr?.getTeamDetails()
    
     }
@@ -38,6 +37,7 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.team_image.sd_setImage(with: URL(string: recivedData.team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
         guard let players = recivedData.players else {return}
         playersArray=players
+        self.networkLoadingIndicator.stopAnimating()
         self.playersCollertionView.reloadData()
     }
     
@@ -87,6 +87,11 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
         return UIEdgeInsets(top: 1, left: 10, bottom: 1, right: 10)
     }
     
-
+    func setupLoadingIndicator(){
+        networkLoadingIndicator.color=UIColor(named: "button")
+        networkLoadingIndicator.center=CGPoint(x: self.playersCollertionView.bounds.width/2, y: self.playersCollertionView.bounds.height/2)
+        playersCollertionView.addSubview(networkLoadingIndicator)
+        networkLoadingIndicator.startAnimating()
+    }
     
 }
