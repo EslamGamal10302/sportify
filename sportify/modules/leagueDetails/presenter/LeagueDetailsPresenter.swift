@@ -115,11 +115,11 @@ class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
        // navigation here
             print("will navigate",teamId)
             print(teamId,leagueId)
-            self.networkService.getTeamDetails(leagueId: leagueId, teamId: teamId) { result in
-                print("recived successfully in presenter")
-            }
+            let teamDetailsScreen = view.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
+            let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueId, view: teamDetailsScreen, networkService: NetworkService.getInstance)
+            teamDetailsScreen.teamDetailsPresentr = teamDetailsPresenter
+            view.navigationController?.pushViewController(teamDetailsScreen, animated: true)
         }else{
-          // send alert
             self.view.showNavigationAlertError()
             print("alert will apear")
         }

@@ -6,25 +6,41 @@
 //
 
 import UIKit
+import SDWebImage
 
-class TeamViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class TeamViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,TeamDetailsViewProtocol {
    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.team_name.text="Barcelona"
-        self.team_coach.text="Eslam Gamal"
-        self.team_image.image=UIImage(named: "one")
    
-    }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = true
     }
-
+    
     
     @IBOutlet weak var team_image: UIImageView!
     @IBOutlet weak var team_name: UILabel!
     @IBOutlet weak var team_coach: UILabel!
+    var teamDetailsPresentr : TeamDetailsPresenterProtocol?
+    var playersArray = [TeamPlayerDisplay]()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+     //   self.team_name.text="Barcelona"
+      //  self.team_coach.text="Eslam Gamal"
+   //     self.team_image.image=UIImage(named: "one")
+        self.teamDetailsPresentr?.getTeamDetails()
+   
+    }
+    
+    func updateView(data: TeamDetailsDisplay?) {
+        guard let recivedData = data else {return}
+        self.team_name.text=recivedData.team_name
+        self.team_coach.text=recivedData.coach_name
+        self.team_image.sd_setImage(with: URL(string: recivedData.team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        guard let players = recivedData.players else {return}
+        playersArray=players
+        self.playersCollertionView.reloadData()
+    }
+    
     
     @IBAction func addToFavorite(_ sender: UIButton) {
         
@@ -39,16 +55,16 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        30
+        return playersArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PlayerCollectionViewCell
-        cell.playerPosition.text = "Midfilder"
-        cell.player_age.text = "27"
-        cell.player_name.text="Eslam Gamal"
-        cell.player_number.text = "10"
-        cell.player_image.image=UIImage(named: "splash")
+        cell.playerPosition.text = playersArray[indexPath.row].position
+        cell.player_age.text = playersArray[indexPath.row].age
+        cell.player_name.text=playersArray[indexPath.row].name
+        cell.player_number.text = playersArray[indexPath.row].number
+        cell.player_image.sd_setImage(with: URL(string: playersArray[indexPath.row].image ?? ""), placeholderImage: UIImage(named: "empty"))
         cell.player_image.layer.cornerRadius = cell.player_image.frame.size.width / 2
         cell.player_image.clipsToBounds = true
         cell.layer.cornerRadius = 20
