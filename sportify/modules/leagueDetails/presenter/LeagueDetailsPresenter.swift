@@ -114,6 +114,10 @@ class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
         if sportType == "football" {
        // navigation here
             print("will navigate",teamId)
+            print(teamId,leagueId)
+            self.networkService.getTeamDetails(leagueId: leagueId, teamId: teamId) { result in
+                print("recived successfully in presenter")
+            }
         }else{
           // send alert
             self.view.showNavigationAlertError()

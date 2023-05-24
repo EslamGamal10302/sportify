@@ -92,6 +92,23 @@ class NetworkService:NetworkServiceProtocol {
                  }
         }
     }
+    func getTeamDetails(leagueId: Int, teamId: Int, completion: @escaping ([TeamDetailsResult]?) -> Void) {
+        let url = "https://apiv2.allsportsapi.com/football/?&met=Teams&APIkey=73c2f608d71c07237af2b5e3b4f14237cf16a8f5fe0257f5e95c24171967b1fc&leagueId=\(leagueId)&teamId=\(teamId)"
+        AF.request(url).responseDecodable(of:TeamDetails.self){response in
+            switch response.result {
+                 case .success(let value):
+                print("team details arrive")
+                 let data = value.result
+                print(data ?? [])
+                 completion(data)
+                 case .failure(let error):
+                print("error team details failure")
+                     print(error)
+                     completion(nil)
+        
+                 }
+        }
+    }
 
     
 }
