@@ -7,6 +7,9 @@
 
 import Foundation
 class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
+    func getSportType() -> String {
+        return sportType
+    }
     
     func getUpcomingFixture() {
         networkService.getLeagueUpcomingFixtures(sportName: sportType, leagueId: leagueId) { [weak self] response in
@@ -35,6 +38,8 @@ class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
         self.leagueId = leagueId
         self.view = view
         self.networkService = networkService
+        print(sportType)
+        print(leagueId)
     }
     func getScreendata() {
         self.getUpcomingFixture()

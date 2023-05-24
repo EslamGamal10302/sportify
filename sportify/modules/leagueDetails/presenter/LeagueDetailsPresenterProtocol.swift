@@ -12,4 +12,5 @@ protocol LeagueDetailsPresenterProtocol{
     func getUpcomingFixture()
     func getLatestResults()
     func getLeagueTeams()
+    func getSportType()->String
 }

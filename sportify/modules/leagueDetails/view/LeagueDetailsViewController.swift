@@ -33,10 +33,12 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     var resultsArray=[LatestResult]()
     var teamsArray=[Team]()
     var leagueDetailPresenter:LeagueDetailsPresenterProtocol?
+    var sportType:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         leagueDetailPresenter?.getScreendata()
+        sportType = leagueDetailPresenter?.getSportType()
 
     }
     
@@ -65,10 +67,24 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         
         if collectionView == upcomingCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as!UpcomingViewCell
-            cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+            
+            if sportType == "football"{
+                cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+            } else {
+                cell.homeTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+            }
+         
+            
+            
             cell.homeTeamImage.layer.cornerRadius = cell.homeTeamImage.frame.size.width / 2
             cell.homeTeamName.text=upcommingArray[indexPath.row].event_home_team
-            cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+            
+            if sportType == "football"{
+                cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+            } else {
+                cell.awayTeamImage.sd_setImage(with: URL(string: upcommingArray[indexPath.row].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+            }
+            
             cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
             cell.awayTeamName.text=upcommingArray[indexPath.row].event_away_team
             cell.matchDate.text=upcommingArray[indexPath.row].event_date
@@ -78,6 +94,7 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamsCell", for: indexPath) as! TeamsViewCell
+           // cell.teamImage.layer.cornerRadius = cell.teamImage.frame.size.width/2
             cell.teamImage.sd_setImage(with: URL(string: teamsArray[indexPath.row].team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
             return cell
         }
@@ -136,10 +153,23 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! LatestResultsViewCell
-        cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        
+        if sportType == "football"{
+            cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        } else {
+            cell.homeTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].event_home_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        }
+        
         cell.homeTeamImage.layer.cornerRadius = cell.homeTeamImage.frame.size.width / 2
         cell.homeTeamName.text=resultsArray[indexPath.row].event_home_team
-        cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        
+        if sportType == "football"{
+            cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        } else{
+            cell.awayTeamImage.sd_setImage(with: URL(string: resultsArray[indexPath.row].event_away_team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        }
+        
+        
         cell.awayTeamImage.layer.cornerRadius = cell.awayTeamImage.frame.size.width / 2
         cell.awayTeamName.text=resultsArray[indexPath.row].event_away_team
         cell.totalResult.text=resultsArray[indexPath.row].event_final_result
