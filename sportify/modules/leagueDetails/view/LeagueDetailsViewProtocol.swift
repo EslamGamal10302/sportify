@@ -7,8 +7,8 @@
 
 import Foundation
 protocol LeagueDetailsViewProtocol{
-    func updateUpcomingFixtures(fixtures : [Upcoming])
-    func updateLatestResult(results : [LatestResult])
-    func updateAllTeams(teams : [Team])
+    func updateUpcomingFixtures(fixtures : [UpcomingFixtureDisplayedData])
+    func updateLatestResult(results : [LatestResultDisplayedData])
+    func updateAllTeams(teams : [TeamDisplayedData])
     
 }

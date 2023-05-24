@@ -32,6 +32,20 @@ struct Upcoming:Codable {
     let event_second_player_logo:String?
 }
 
+struct UpcomingFixtureDisplayedData{
+    let FirstTeamImage:String?
+    let SecondTeamImage:String?
+    let FirstTeamName:String?
+    let SecondTeamName:String?
+    let MatchDate:String?
+    let MatchTime:String?
+}
+
+
+
+
+
+
 
 
 struct LeagueLatestResult: Codable {
@@ -60,6 +74,20 @@ struct LatestResult:Codable {
     let event_second_player_logo:String?
 }
 
+struct LatestResultDisplayedData{
+    let FirstTeamImage:String?
+    let SecondTeamImage:String?
+    let FirstTeamName:String?
+    let SecondTeamName:String?
+    let matchResult:String?
+}
+
+
+
+
+
+
+
 
 
 struct LeagueTeams: Codable {
@@ -73,4 +101,18 @@ struct Team: Codable {
     let team_name: String?
     let team_logo: String?
 
+}
+
+struct TeamDisplayedData{
+    let teamId: Int
+    let teamName: String?
+    let teamLogo: String?
+}
+
+
+enum SportTypeName:String {
+    case football = "football"
+    case basketbell = "basketball"
+    case cricket = "cricket"
+    case tennis = "tennis"
 }
