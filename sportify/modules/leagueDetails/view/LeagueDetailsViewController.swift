@@ -42,14 +42,8 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == upcomingCollection {
-            if upcommingArray.count == 0 {
-                self.addUpcomingEmptySubview()
-            }
             return self.upcommingArray.count
         }else {
-            if teamsArray.count == 0 {
-                self.addTeamsEmptySubview()
-            }
             return self.teamsArray.count
         }
     }
@@ -123,9 +117,6 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if resultsArray.count == 0 {
-            self.addLatestResultEmptySubview()
-        }
         return resultsArray.count
     }
     
@@ -150,18 +141,27 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         upcomingNetworkIndicator.stopAnimating()
         self.upcommingArray=fixtures
         self.upcomingCollection.reloadData()
+        if fixtures.isEmpty {
+            self.addEmptyResultStatusSubview(view: self.upcomingCollection)
+        }
     }
     
     func updateLatestResult(results: [LatestResultDisplayedData]) {
         latestResultNetworkIndicator.stopAnimating()
         self.resultsArray=results
         self.latestResultTable.reloadData()
+        if results.isEmpty {
+            self.addEmptyResultStatusSubview(view: self.latestResultTable)
+        }
     }
     
     func updateAllTeams(teams: [TeamDisplayedData]) {
         teamsNetworkIndicator.stopAnimating()
         self.teamsArray=teams
         self.TeamesTable.reloadData()
+        if teams.isEmpty {
+            self.addEmptyResultStatusSubview(view: self.TeamesTable)
+        }
     }
     func setupLoadingIndicators(){
         let yOffset: CGFloat = -200
@@ -184,17 +184,18 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         
      
     }
-    func addUpcomingEmptySubview(){
-        let msg = UILabel(frame: CGRect(x: 0, y: 0, width: upcomingCollection.bounds.width/2, height: upcomingCollection.bounds.height/2))
-        msg.text = "There's No data to display"
-        msg.textAlignment = .center
-        self.upcomingCollection.addSubview(msg)
+
+    func addEmptyResultStatusSubview(view :UIView){
+        let labelWidth: CGFloat = view.bounds.width/2
+           let labelHeight: CGFloat = view.bounds.height/2
+           let labelX = (view.bounds.width - labelWidth) / 2
+           let labelY = (view.bounds.height - labelHeight) / 2
+           let msg = UILabel(frame: CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight))
+           msg.text = "No data to display"
+           msg.textAlignment = .center
+           msg.textColor=UIColor(named: "text")
+           view.addSubview(msg)
     }
-    func addLatestResultEmptySubview(){
-        
-    }
-    func addTeamsEmptySubview(){
-        
-    }
+   
     
 }
