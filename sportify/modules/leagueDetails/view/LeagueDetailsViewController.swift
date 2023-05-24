@@ -18,11 +18,14 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     var teamsArray=[TeamDisplayedData]()
     var leagueDetailPresenter:LeagueDetailsPresenterProtocol?
     var sportType:String!    // must deleted
-    
+    let upcomingNetworkIndicator=UIActivityIndicatorView(style: .large)
+    let latestResultNetworkIndicator=UIActivityIndicatorView(style: .large)
+    let teamsNetworkIndicator=UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
         leagueDetailPresenter?.getScreendata()
         sportType = leagueDetailPresenter?.getSportType()   // must delted
+        self.setupLoadingIndicators()
 
     }
     
@@ -39,8 +42,14 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == upcomingCollection {
+            if upcommingArray.count == 0 {
+                self.addUpcomingEmptySubview()
+            }
             return self.upcommingArray.count
         }else {
+            if teamsArray.count == 0 {
+                self.addTeamsEmptySubview()
+            }
             return self.teamsArray.count
         }
     }
@@ -114,6 +123,9 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if resultsArray.count == 0 {
+            self.addLatestResultEmptySubview()
+        }
         return resultsArray.count
     }
     
@@ -135,18 +147,54 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         return 150
     }
     func updateUpcomingFixtures(fixtures: [UpcomingFixtureDisplayedData]) {
+        upcomingNetworkIndicator.stopAnimating()
         self.upcommingArray=fixtures
         self.upcomingCollection.reloadData()
     }
     
     func updateLatestResult(results: [LatestResultDisplayedData]) {
+        latestResultNetworkIndicator.stopAnimating()
         self.resultsArray=results
         self.latestResultTable.reloadData()
     }
     
     func updateAllTeams(teams: [TeamDisplayedData]) {
+        teamsNetworkIndicator.stopAnimating()
         self.teamsArray=teams
         self.TeamesTable.reloadData()
+    }
+    func setupLoadingIndicators(){
+        let yOffset: CGFloat = -200
+        upcomingNetworkIndicator.color=UIColor(named: "button")
+        upcomingNetworkIndicator.center=upcomingCollection.center
+        upcomingCollection.addSubview(upcomingNetworkIndicator)
+        upcomingNetworkIndicator.startAnimating()
+        
+      
+        latestResultNetworkIndicator.color=UIColor(named: "button")
+        latestResultNetworkIndicator.center = CGPoint(x: latestResultTable.center.x, y: latestResultTable.center.y + yOffset)
+        latestResultTable.addSubview(latestResultNetworkIndicator)
+        latestResultNetworkIndicator.startAnimating()
+        
+        
+        teamsNetworkIndicator.color=UIColor(named: "button")
+        teamsNetworkIndicator.center=TeamesTable.center
+        TeamesTable.addSubview(teamsNetworkIndicator)
+        teamsNetworkIndicator.startAnimating()
+        
+     
+    }
+    func addUpcomingEmptySubview(){
+        let msg = UILabel(frame: CGRect(x: 0, y: 0, width: upcomingCollection.bounds.width/2, height: upcomingCollection.bounds.height/2))
+        msg.text = "There's No data to display"
+        msg.textAlignment = .center
+        self.upcomingCollection.addSubview(msg)
+    }
+    func addLatestResultEmptySubview(){
+        
+    }
+    func addTeamsEmptySubview(){
+        
     }
     
 }
