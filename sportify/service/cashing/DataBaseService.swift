@@ -17,7 +17,7 @@ class DataBaseService:DataBaseServiceProtocol{
        let appDelegate=UIApplication.shared.delegate as! AppDelegate
        context=appDelegate.persistentContainer.viewContext
     }
-    func insert(data:StoredTeam,completion : @escaping (Bool)-> Void){
+    func insertTeam(data:StoredTeam,completion : @escaping (Bool)-> Void){
         let fetchRequest=NSFetchRequest<NSManagedObject>(entityName: "TeamDetail")
         let predicate = NSPredicate(format: "teamId == %d", data.teamId)
         fetchRequest.predicate=predicate
@@ -50,36 +50,23 @@ class DataBaseService:DataBaseServiceProtocol{
     
     
     
-    func delete(data:StoredTeam){
+    func deleteTeam(teamId:Int , completion : @escaping (Bool)-> Void){
         let fetchRequest=NSFetchRequest<NSManagedObject>(entityName: "TeamDetail")
-        let predicate=NSPredicate(format: "teamId == %d",data.teamId)
+        let predicate=NSPredicate(format: "teamId == %d",teamId)
         fetchRequest.predicate=predicate
         do {
             let teams=try context!.fetch(fetchRequest)
              context!.delete(teams[0])
              try context!.save()
+            completion(true)
              print("deletedSuccessfully")
         } catch {
+            completion(false)
             print("eroor in delete")
         }
    
     }
-    func deleteAllTableItems(){
-        let fetchRequest=NSFetchRequest<NSManagedObject>(entityName: "TeamDetail")
-        do {
-            let teams=try context!.fetch(fetchRequest)
-            print("hereeeeee")
-            for item in teams {
-                context!.delete(item)
-                try context!.save()
-                print("deletedSuccessfully")
-            }
-           
-        } catch {
-            print("eroor in delete all data")
-        }
-   
-    }
+ 
     func getAllTeams(completion : @escaping ([StoredTeam]?)-> Void){
         var retrievedArray=[StoredTeam]()
         let fetchRequest=NSFetchRequest<NSManagedObject>(entityName: "TeamDetail")

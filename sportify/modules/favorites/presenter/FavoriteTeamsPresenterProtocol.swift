@@ -11,4 +11,5 @@ protocol FavoriteTeamsPresenterProtocol{
     func getAllFavoriteTeams()
     func searchInTeams(with characters: String)
     func endSearching()
+    func deleteTeam(itemIndexPath:IndexPath,teamId:Int)
 }

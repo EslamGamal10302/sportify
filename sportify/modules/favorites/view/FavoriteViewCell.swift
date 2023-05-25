@@ -25,7 +25,7 @@ class FavoriteViewCell: UITableViewCell {
     @IBOutlet weak var fav_label: UILabel!
     
     
-    @IBOutlet weak var fav_action_button: UIButton!
+    @IBOutlet weak var remove_action_button: UIButton!
     
     
     @IBOutlet weak var container: UIView!

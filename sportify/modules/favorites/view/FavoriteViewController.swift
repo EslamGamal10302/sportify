@@ -16,6 +16,7 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var favoritePresenter:FavoriteTeamsPresenterProtocol?
     var favoriteteamsArray:[FavoriteTeamsDisplay]?
     let loadingNetworkIndicator=UIActivityIndicatorView(style: .large)
+    var emptyDataMessage:UILabel?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -37,9 +38,20 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
         print(data)
         self.myTable.reloadData()
         if data.isEmpty{
-            addEmptyResultStatusSubview()
+          addEmptyResultStatusSubview()
+        }else {
+            self.emptyDataMessage?.removeFromSuperview()
         }
      
+    }
+    func updateViewAfterDeleteItem(itemIndexPath:IndexPath){
+        self.favoriteteamsArray?.remove(at: itemIndexPath.row)
+        self.myTable.reloadData()
+        if favoriteteamsArray!.isEmpty {
+            self.addEmptyResultStatusSubview()
+        }else {
+            self.emptyDataMessage?.removeFromSuperview()
+        }
     }
     
   
@@ -59,10 +71,62 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
          cell.fav_image.clipsToBounds = true
         cell.container.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
+        cell.remove_action_button.tag=indexPath.row
+        cell.remove_action_button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return cell
     }
     
+    @objc func buttonTapped(_ sender: UIButton) {
+            let itemIndexPath = IndexPath(row: sender.tag, section: 0)
+        let selectedTeam=(favoriteteamsArray?[itemIndexPath.row])!
+        self.confirmationForDelete(itemIndexPath: itemIndexPath, selectedTeam: selectedTeam)
+        }
     
+    func confirmationForDelete(itemIndexPath:IndexPath,selectedTeam:FavoriteTeamsDisplay){
+        let alert=UIAlertController(title: "Confirmation request", message: "Are you sure you want to delete this team from your favorite list?", preferredStyle: .alert)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Confirmation request", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "Are you sure you want to delete this team from your favorite list?", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+        let confirm=UIAlertAction(title: "confirm", style: .destructive){[self]
+            action in
+            self.favoritePresenter?.deleteTeam(itemIndexPath: itemIndexPath, teamId: selectedTeam.teamId)
+        }
+        let cancel = UIAlertAction(title: "cancel", style: .cancel)
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+   
+    
+    func showDeleteSuccessalert(){
+        let alert = UIAlertController(title: "Deleted successfully", message: "team deleted successfully from your favorite list you can't display it again", preferredStyle: .alert)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Deleted successfully", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "team deleted successfully from your favorite list you can't display it again", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+        present(alert, animated: true)
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }
+    }
+    func showDeleteErrorAlert(){
+        let alert = UIAlertController(title: "Unexpected Error", message: "can't delete this team", preferredStyle: .alert)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Unexpected Error", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "can't delete this team", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+        present(alert, animated: true)
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }
+    }
+  
+   
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
         UIView.animate(withDuration: 0.35) {
@@ -86,15 +150,15 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
    
     func addEmptyResultStatusSubview(){
-           let labelWidth: CGFloat = view.bounds.width/2
-           let labelHeight: CGFloat = view.bounds.height/2
-           let labelX = (view.bounds.width - labelWidth) / 2
-           let labelY = (view.bounds.height - labelHeight) / 2
-           let msg = UILabel(frame: CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight))
-           msg.text = "No data to display"
-           msg.textAlignment = .center
-           msg.textColor=UIColor(named: "text")
-           view.addSubview(msg)
+        let labelWidth: CGFloat = self.myTable.bounds.width/2
+           let labelHeight: CGFloat = self.myTable.bounds.height/2
+           let labelX = (self.myTable.bounds.width - labelWidth) / 2
+           let labelY = (self.myTable.bounds.height - labelHeight) / 2
+        emptyDataMessage = UILabel(frame: CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight))
+        emptyDataMessage!.text = "No data to display"
+        emptyDataMessage!.textAlignment = .center
+        emptyDataMessage!.textColor=UIColor(named: "text")
+        self.myTable.addSubview(emptyDataMessage!)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("search changed")

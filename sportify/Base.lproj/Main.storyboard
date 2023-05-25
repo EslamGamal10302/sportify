@@ -182,7 +182,7 @@
             <objects>
                 <viewController storyboardIdentifier="leagues" id="mkQ-53-OTe" customClass="LeaguesViewController" customModule="sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zw5-xp-sSB">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dYv-f5-Reb">
@@ -280,7 +280,7 @@
             <objects>
                 <viewController storyboardIdentifier="leaguesDetails" id="Z1W-bL-wz8" customClass="LeagueDetailsViewController" customModule="sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8zg-3i-DWX">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjD-LE-ozT">
@@ -675,9 +675,9 @@
                                         <color key="backgroundColor" name="launch"/>
                                         <connections>
                                             <outlet property="container" destination="TLp-zQ-JmU" id="3oX-DA-Mga"/>
-                                            <outlet property="fav_action_button" destination="jpc-mz-jRo" id="KE9-Cx-bCF"/>
                                             <outlet property="fav_image" destination="kOl-lS-Oxm" id="jja-9s-iQW"/>
                                             <outlet property="fav_label" destination="b1l-Je-Ufu" id="nNW-6G-u3q"/>
+                                            <outlet property="remove_action_button" destination="jpc-mz-jRo" id="KE9-Cx-bCF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -714,7 +714,7 @@
             <objects>
                 <viewController storyboardIdentifier="teamDetails" id="gCQ-fk-YzP" customClass="TeamViewController" customModule="sportify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lc0-4r-7LT">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iro-bP-ocv" userLabel="container">
@@ -970,6 +970,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dol-l6-xKM">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>

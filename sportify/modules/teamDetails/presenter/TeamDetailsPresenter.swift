@@ -59,7 +59,7 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
     }
     func addTeamToFavorites(teamName:String , teamImage:String){
         print("added to favorites with data with id \(teamId) and idleague \(leagueId) and name \(teamName) and \(teamImage)")
-        dataBaseService.insert(data: StoredTeam(teamId: teamId, leagueId: leagueId, teamName: teamName, teamImage: teamImage)) { [weak self] success in
+        dataBaseService.insertTeam(data: StoredTeam(teamId: teamId, leagueId: leagueId, teamName: teamName, teamImage: teamImage)) { [weak self] success in
             if success {
                 self?.view.showSuccessInsertAlert()
             }else {

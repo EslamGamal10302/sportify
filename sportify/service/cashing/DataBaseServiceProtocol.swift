@@ -8,6 +8,7 @@
 import Foundation
 
 protocol DataBaseServiceProtocol{
-    func insert(data:StoredTeam , completion : @escaping (Bool)-> Void)
+    func insertTeam(data:StoredTeam , completion : @escaping (Bool)-> Void)
     func getAllTeams(completion : @escaping ([StoredTeam]?)-> Void)
+    func deleteTeam(teamId:Int , completion : @escaping (Bool)-> Void)
 }

@@ -11,5 +11,8 @@ protocol FavoriteViewProtocol{
     func updateView(data:[FavoriteTeamsDisplay])
     func searchInTeamsResults(result: [FavoriteTeamsDisplay])
     func endSearching(result: [FavoriteTeamsDisplay])
+    func showDeleteErrorAlert()
+    func showDeleteSuccessalert()
+    func updateViewAfterDeleteItem(itemIndexPath:IndexPath)
     
 }
