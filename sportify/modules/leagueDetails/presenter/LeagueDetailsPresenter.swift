@@ -116,7 +116,7 @@ class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
             print("will navigate",teamId)
             print(teamId,leagueId)
             let teamDetailsScreen = view.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
-            let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueId, view: teamDetailsScreen, networkService: NetworkService.getInstance)
+            let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueId, view: teamDetailsScreen, networkService: NetworkService.getInstance, dataBaseService: DataBaseService.getInstance)
             teamDetailsScreen.teamDetailsPresentr = teamDetailsPresenter
             view.navigationController?.pushViewController(teamDetailsScreen, animated: true)
         }else{

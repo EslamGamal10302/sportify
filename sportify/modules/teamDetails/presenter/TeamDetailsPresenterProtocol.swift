@@ -9,4 +9,5 @@ import Foundation
 protocol TeamDetailsPresenterProtocol{
     func getTeamDetails()
     func prepareTeamDetailsData(data:[TeamDetailsResult]?)->TeamDetailsDisplay?
+    func addTeamToFavorites(teamName:String , teamImage:String)
 }

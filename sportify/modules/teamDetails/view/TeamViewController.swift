@@ -22,6 +22,8 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     @IBOutlet weak var team_coach: UILabel!
     var teamDetailsPresentr : TeamDetailsPresenterProtocol?
     var playersArray = [TeamPlayerDisplay]()
+    var teamName:String?
+    var teamImageUrl:String?
     let networkLoadingIndicator=UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +35,10 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     func updateView(data: TeamDetailsDisplay?) {
         guard let recivedData = data else {return}
         self.team_name.text=recivedData.team_name
+        self.teamName=recivedData.team_name
         self.team_coach.text=recivedData.coach_name
         self.team_image.sd_setImage(with: URL(string: recivedData.team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        self.teamImageUrl=recivedData.team_logo
         guard let players = recivedData.players else {return}
         playersArray=players
         self.networkLoadingIndicator.stopAnimating()
@@ -43,11 +47,15 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     
     @IBAction func addToFavorite(_ sender: UIButton) {
-        
-        
+        self.teamDetailsPresentr?.addTeamToFavorites(teamName: teamName ?? "" , teamImage: teamImageUrl ?? "")
         
     }
     @IBOutlet weak var playersCollertionView: UICollectionView!
+    
+    
+    @IBOutlet weak var favorite: UIButton!
+    
+    
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -92,6 +100,54 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
         networkLoadingIndicator.center=CGPoint(x: self.playersCollertionView.bounds.width/2, y: self.playersCollertionView.bounds.height/2)
         playersCollertionView.addSubview(networkLoadingIndicator)
         networkLoadingIndicator.startAnimating()
+    }
+    func showSuccessInsertAlert() {
+     self.favorite.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+     startFavoriteButtonAnimation()
+    }
+    func showFailureInsertAlert() {
+        let alert = UIAlertController(title: "Unexpected Error", message: "Team is already exist in your favorite list you can't insert it again", preferredStyle: .alert)
+           alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Unexpected Error", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "Team is already exist in your favorite list you can't insert it again", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+           present(alert, animated: true)
+           Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+               alert.dismiss(animated: true, completion: nil)
+           }
+    }
+    func  startFavoriteButtonAnimation(){
+        let initialSize = CGFloat(17)
+         let expandedSize = CGFloat(35)
+        UIView.animate(withDuration: 0.5, animations: {
+             let originalImage = self.favorite.image(for: .normal)
+             let expandedImage = originalImage?.withConfiguration(UIImage.SymbolConfiguration(pointSize: expandedSize))
+             self.favorite.setImage(expandedImage, for: .normal)
+             self.favorite.layoutIfNeeded()
+         }) { _ in
+             UIView.animate(withDuration: 0.5, animations: {
+                 let originalImage = self.favorite.image(for: .normal)
+                 let resizedImage = originalImage?.withConfiguration(UIImage.SymbolConfiguration(pointSize: initialSize))
+                 self.favorite.setImage(resizedImage, for: .normal)
+                 self.favorite.layoutIfNeeded()
+             }) { _ in
+                 self.showAlert()
+             }
+         }
+    }
+    
+    func showAlert(){
+        let alert = UIAlertController(title: "Added successfully", message: "Team added successfully to your favorite list you can display it any time", preferredStyle: .alert)
+           alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Added successfully", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "Team added successfully to your favorite list you can display it any time", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+           present(alert, animated: true)
+           Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+               alert.dismiss(animated: true, completion: nil)
+           }
     }
     
 }

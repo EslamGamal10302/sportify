@@ -732,8 +732,8 @@
                                         <color key="textColor" name="text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-Tv-Rwc">
-                                        <rect key="frame" x="266.66666666666669" y="92" width="106.33333333333331" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-Tv-Rwc">
+                                        <rect key="frame" x="266.66666666666669" y="102" width="106.33333333333331" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" name="text"/>
                                         <nil key="highlightedColor"/>
@@ -744,20 +744,22 @@
                                         <color key="textColor" name="text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeX-S6-NYi">
-                                        <rect key="frame" x="267.66666666666669" y="137" width="105.33333333333331" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeX-S6-NYi">
+                                        <rect key="frame" x="267.66666666666669" y="147" width="105.33333333333331" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" name="text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqS-Ib-nKF">
-                                        <rect key="frame" x="341.33333333333331" y="40.333333333333336" width="31.666666666666686" height="31.666666666666664"/>
+                                        <rect key="frame" x="341.33333333333331" y="50.333333333333336" width="31.666666666666686" height="31.666666666666664"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="pqS-Ib-nKF" secondAttribute="height" multiplier="1:1" id="doG-j8-GT5"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="17"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="addToFavorite:" destination="gCQ-fk-YzP" eventType="touchUpInside" id="mxK-Kz-mpv"/>
                                         </connections>
@@ -920,6 +922,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XDw-c2-Fic"/>
                     <connections>
+                        <outlet property="favorite" destination="pqS-Ib-nKF" id="I3L-Zm-Qke"/>
                         <outlet property="playersCollertionView" destination="5YG-DH-OCU" id="sxg-c6-vGb"/>
                         <outlet property="team_coach" destination="YeX-S6-NYi" id="mXB-BK-zA2"/>
                         <outlet property="team_image" destination="2fs-CZ-prg" id="PsG-lr-OY0"/>

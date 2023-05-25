@@ -8,5 +8,7 @@
 import Foundation
 protocol TeamDetailsViewProtocol{
     func updateView(data : TeamDetailsDisplay?)
+    func showSuccessInsertAlert()
+    func showFailureInsertAlert()
     
 }

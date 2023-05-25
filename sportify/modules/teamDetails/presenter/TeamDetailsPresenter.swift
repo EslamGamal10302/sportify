@@ -12,11 +12,13 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
     var leagueId:Int
     var view:TeamDetailsViewProtocol
     var networkService:NetworkServiceProtocol
-    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol) {
+    var dataBaseService:DataBaseServiceProtocol
+    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol,dataBaseService:DataBaseServiceProtocol) {
         self.teamId = teamId
         self.leagueId = leagueId
         self.view = view
         self.networkService = networkService
+        self.dataBaseService = dataBaseService
     }
     func getTeamDetails() {
         self.networkService.getTeamDetails(leagueId: leagueId, teamId: teamId) { [weak self] result in
@@ -43,6 +45,15 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
             return teamDetailsToDisplay
         }else{
             return nil
+        }
+    }
+    func addTeamToFavorites(teamName:String , teamImage:String){
+        dataBaseService.insert(data: StoredTeam(teamId: teamId, leagueId: leagueId, teamName: teamName, teamImage: teamImage)) { [weak self] success in
+            if success {
+                self?.view.showSuccessInsertAlert()
+            }else {
+                self?.view.showFailureInsertAlert()
+            }
         }
     }
     
