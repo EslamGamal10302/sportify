@@ -80,7 +80,7 @@ class DataBaseService:DataBaseServiceProtocol{
         }
    
     }
-    func getAllTeams()->[StoredTeam]{
+    func getAllTeams(completion : @escaping ([StoredTeam]?)-> Void){
         var retrievedArray=[StoredTeam]()
         let fetchRequest=NSFetchRequest<NSManagedObject>(entityName: "TeamDetail")
         do{
@@ -96,10 +96,14 @@ class DataBaseService:DataBaseServiceProtocol{
             }
             print(retrievedArray.count)
             // if empty will return []
+            print("data retrived succsessfully")
+          //  print(retrievedArray)
+            completion(retrievedArray)
         }catch{
             print("error")
+            completion(nil)
+            
         }
-        return retrievedArray
     }
     
 }
