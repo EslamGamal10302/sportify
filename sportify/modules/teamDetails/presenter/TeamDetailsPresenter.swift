@@ -8,23 +8,33 @@
 import Foundation
 
 class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
+    var sportType:String
     var teamId:Int
     var leagueId:Int
     var view:TeamDetailsViewProtocol
     var networkService:NetworkServiceProtocol
     var dataBaseService:DataBaseServiceProtocol
-    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol,dataBaseService:DataBaseServiceProtocol) {
+    var specialSportName:String
+    var specialSportImage:String
+    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol,dataBaseService:DataBaseServiceProtocol,sportType:String,specialSportName:String, specialSportImage:String) {
         self.teamId = teamId
         self.leagueId = leagueId
         self.view = view
         self.networkService = networkService
         self.dataBaseService = dataBaseService
+        self.sportType = sportType
+        self.specialSportName = specialSportName
+        self.specialSportImage = specialSportImage
     }
     func getTeamDetails() {
-        self.networkService.getTeamDetails(leagueId: leagueId, teamId: teamId) { [weak self] result in
-            print("debug team details",result!)
-           let teamDetailsToDisplay = self?.prepareTeamDetailsData(data: result)
-            self?.view.updateView(data: teamDetailsToDisplay)
+        if sportType == "football" {
+            self.networkService.getTeamDetails(leagueId: leagueId, teamId: teamId) { [weak self] result in
+                print("debug team details",result!)
+                let teamDetailsToDisplay = self?.prepareTeamDetailsData(data: result)
+                self?.view.updateView(data: teamDetailsToDisplay)
+            }
+        } else {
+            self.view.updateSpecialTeamData(teamImage: specialSportImage, teamName: specialSportName)
         }
     }
     
@@ -48,6 +58,7 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
         }
     }
     func addTeamToFavorites(teamName:String , teamImage:String){
+        print("added to favorites with data with id \(teamId) and idleague \(leagueId) and name \(teamName) and \(teamImage)")
         dataBaseService.insert(data: StoredTeam(teamId: teamId, leagueId: leagueId, teamName: teamName, teamImage: teamImage)) { [weak self] success in
             if success {
                 self?.view.showSuccessInsertAlert()

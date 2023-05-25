@@ -110,18 +110,18 @@ class LeagueDetailsPresenter:LeagueDetailsPresenterProtocol{
     func getSportType() -> String {
         return sportType
     }
-    func navigateToTeamDetailsScreen(teamId: Int, view: UIViewController) {
-        if sportType == "football" {
-       // navigation here
-            print("will navigate",teamId)
-            print(teamId,leagueId)
-            let teamDetailsScreen = view.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
-            let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueId, view: teamDetailsScreen, networkService: NetworkService.getInstance, dataBaseService: DataBaseService.getInstance)
-            teamDetailsScreen.teamDetailsPresentr = teamDetailsPresenter
-            view.navigationController?.pushViewController(teamDetailsScreen, animated: true)
-        }else{
+    func navigateToTeamDetailsScreen(teamId: Int, view: UIViewController,specialSportName:String,specialSportImage:String) {
+        if sportType == "tennis" {
             self.view.showNavigationAlertError()
             print("alert will apear")
+        }else{
+            // navigation here
+                 print("will navigate",teamId)
+                 print(teamId,leagueId)
+                 let teamDetailsScreen = view.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
+                 let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueId, view: teamDetailsScreen, networkService: NetworkService.getInstance, dataBaseService: DataBaseService.getInstance,sportType: sportType,specialSportName: specialSportName,specialSportImage: specialSportImage)
+                 teamDetailsScreen.teamDetailsPresentr = teamDetailsPresenter
+                 view.navigationController?.pushViewController(teamDetailsScreen, animated: true)
         }
     }
     

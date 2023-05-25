@@ -74,7 +74,7 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == TeamesTable {
-            self.leagueDetailPresenter?.navigateToTeamDetailsScreen(teamId: teamsArray[indexPath.row].teamId, view: self)
+            self.leagueDetailPresenter?.navigateToTeamDetailsScreen(teamId: teamsArray[indexPath.row].teamId, view: self,specialSportName: teamsArray[indexPath.row].teamName!,specialSportImage: teamsArray[indexPath.row].teamLogo ?? "")
         }
     }
     

@@ -10,7 +10,7 @@ import SDWebImage
 
 class TeamViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,TeamDetailsViewProtocol {
    
-   
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
         tabBarController?.tabBar.isHidden = true
@@ -43,6 +43,15 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
         playersArray=players
         self.networkLoadingIndicator.stopAnimating()
         self.playersCollertionView.reloadData()
+    }
+    func updateSpecialTeamData(teamImage: String, teamName: String) {
+        self.team_name.text=teamName
+        self.teamName=teamName
+        self.team_image.sd_setImage(with: URL(string: teamImage), placeholderImage: UIImage(named: "empty"))
+        self.teamImageUrl=teamImage
+        self.team_coach.text="Not Available"
+        self.networkLoadingIndicator.stopAnimating()
+        addEmptyResultStatusSubview()
     }
     
     
@@ -149,5 +158,20 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
                alert.dismiss(animated: true, completion: nil)
            }
     }
+    
+    func addEmptyResultStatusSubview(){
+        let labelWidth: CGFloat = self.playersCollertionView.bounds.width/2
+        let labelHeight: CGFloat = self.playersCollertionView.bounds.height/2
+        let labelX = (self.playersCollertionView.bounds.width - labelWidth) / 2
+        let labelY = (self.playersCollertionView.bounds.height - labelHeight) / 4
+        let msg = UILabel(frame: CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight))
+        msg.text = "No data to display"
+        msg.textAlignment = .center
+        msg.textColor=UIColor(named: "text")
+        self.playersCollertionView.addSubview(msg)
+    }
+    
+    
+    
     
 }
