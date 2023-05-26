@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class FavoriteTeamsPresenter:FavoriteTeamsPresenterProtocol{
     var view:FavoriteViewProtocol
@@ -30,7 +31,7 @@ class FavoriteTeamsPresenter:FavoriteTeamsPresenterProtocol{
         if let recivedData = data {
             var dataToDisplay = [FavoriteTeamsDisplay]()
             for team in recivedData {
-                dataToDisplay.append(FavoriteTeamsDisplay(teamImage: team.teamImage, teamName: team.teamName,teamId: team.teamId))
+                dataToDisplay.append(FavoriteTeamsDisplay(teamImage: team.teamImage, teamName: team.teamName,teamId: team.teamId,leagueId: team.leagueId))
             }
             return dataToDisplay
         }else {
@@ -57,6 +58,13 @@ class FavoriteTeamsPresenter:FavoriteTeamsPresenterProtocol{
                 self?.view.showDeleteErrorAlert()
             }
         }
+    }
+    func navigateToTeamDetailsScreen(view:UIViewController,teamId:Int,leagueid:Int,teamName:String,teamImage:String){
+        let teamDetailsScreen = view.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
+        let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueid, view: teamDetailsScreen, networkService: NetworkService.getInstance, dataBaseService: DataBaseService.getInstance,specialSportName: teamName,specialSportImage: teamImage)
+        teamDetailsScreen.teamDetailsPresentr = teamDetailsPresenter
+        view.navigationController?.pushViewController(teamDetailsScreen, animated: true)
+        
     }
     
     

@@ -11,9 +11,11 @@ class FavoriteTeamsDisplay {
     var teamImage:String
     var teamName:String
     var  teamId:Int
-    init(teamImage: String, teamName: String, teamId: Int) {
+    var  leagueId:Int
+    init(teamImage: String, teamName: String, teamId: Int, leagueId: Int) {
         self.teamImage = teamImage
         self.teamName = teamName
         self.teamId = teamId
+        self.leagueId = leagueId
     }
 }

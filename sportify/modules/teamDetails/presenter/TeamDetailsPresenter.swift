@@ -16,7 +16,7 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
     var dataBaseService:DataBaseServiceProtocol
     var specialSportName:String
     var specialSportImage:String
-    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol,dataBaseService:DataBaseServiceProtocol,sportType:String,specialSportName:String, specialSportImage:String) {
+    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol,dataBaseService:DataBaseServiceProtocol,sportType:String = "football",specialSportName:String, specialSportImage:String) {
         self.teamId = teamId
         self.leagueId = leagueId
         self.view = view

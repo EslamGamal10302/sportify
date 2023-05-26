@@ -139,8 +139,7 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let teamDetails = self.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
-        self.navigationController?.pushViewController(teamDetails, animated: true)
+        self.favoritePresenter?.navigateToTeamDetailsScreen(view: self, teamId: favoriteteamsArray![indexPath.row].teamId, leagueid: favoriteteamsArray![indexPath.row].leagueId, teamName: favoriteteamsArray![indexPath.row].teamName, teamImage: favoriteteamsArray![indexPath.row].teamImage)
     }
     func  prepareloadingNetworkIndicator(){
         loadingNetworkIndicator.color=UIColor(named: "button")
