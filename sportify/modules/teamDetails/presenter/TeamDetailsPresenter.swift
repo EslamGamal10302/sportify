@@ -16,7 +16,7 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
     var dataBaseService:DataBaseServiceProtocol
     var specialSportName:String
     var specialSportImage:String
-    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol,dataBaseService:DataBaseServiceProtocol,sportType:String = "football",specialSportName:String, specialSportImage:String) {
+    init(teamId: Int, leagueId: Int, view: TeamDetailsViewProtocol, networkService: NetworkServiceProtocol,dataBaseService:DataBaseServiceProtocol,sportType:String,specialSportName:String, specialSportImage:String) {
         self.teamId = teamId
         self.leagueId = leagueId
         self.view = view
@@ -59,7 +59,7 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
     }
     func addTeamToFavorites(teamName:String , teamImage:String){
         print("added to favorites with data with id \(teamId) and idleague \(leagueId) and name \(teamName) and \(teamImage)")
-        dataBaseService.insertTeam(data: StoredTeam(teamId: teamId, leagueId: leagueId, teamName: teamName, teamImage: teamImage)) { [weak self] success in
+        dataBaseService.insertTeam(data: StoredTeam(teamId: teamId, leagueId: leagueId, teamName: teamName, teamImage: teamImage, sportType: sportType)) { [weak self] success in
             if success {
                 self?.view.showSuccessInsertAlert()
             }else {

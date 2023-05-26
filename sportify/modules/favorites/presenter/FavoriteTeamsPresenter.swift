@@ -31,7 +31,7 @@ class FavoriteTeamsPresenter:FavoriteTeamsPresenterProtocol{
         if let recivedData = data {
             var dataToDisplay = [FavoriteTeamsDisplay]()
             for team in recivedData {
-                dataToDisplay.append(FavoriteTeamsDisplay(teamImage: team.teamImage, teamName: team.teamName,teamId: team.teamId,leagueId: team.leagueId))
+                dataToDisplay.append(FavoriteTeamsDisplay(teamImage: team.teamImage, teamName: team.teamName,teamId: team.teamId,leagueId: team.leagueId, sportType: team.sportType))
             }
             return dataToDisplay
         }else {
@@ -59,9 +59,9 @@ class FavoriteTeamsPresenter:FavoriteTeamsPresenterProtocol{
             }
         }
     }
-    func navigateToTeamDetailsScreen(view:UIViewController,teamId:Int,leagueid:Int,teamName:String,teamImage:String){
+    func navigateToTeamDetailsScreen(view:UIViewController,teamId:Int,leagueid:Int,teamName:String,teamImage:String,sportType:String){
         let teamDetailsScreen = view.storyboard?.instantiateViewController(identifier: "teamDetails") as!TeamViewController
-        let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueid, view: teamDetailsScreen, networkService: NetworkService.getInstance, dataBaseService: DataBaseService.getInstance,specialSportName: teamName,specialSportImage: teamImage)
+        let  teamDetailsPresenter = TeamDetailsPresenter(teamId: teamId, leagueId: leagueid, view: teamDetailsScreen, networkService: NetworkService.getInstance, dataBaseService: DataBaseService.getInstance, sportType: sportType,specialSportName: teamName,specialSportImage: teamImage)
         teamDetailsScreen.teamDetailsPresentr = teamDetailsPresenter
         view.navigationController?.pushViewController(teamDetailsScreen, animated: true)
         

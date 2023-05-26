@@ -30,6 +30,7 @@ class DataBaseService:DataBaseServiceProtocol{
                 team.setValue(data.teamImage, forKey: "teamImage")
                 team.setValue(data.leagueId, forKey: "leagueId")
                 team.setValue(data.teamId, forKey: "teamId")
+                team.setValue(data.sportType, forKey: "sportType")
                 try  context?.save()
                 print("added successfully")
                 completion(true)
@@ -78,6 +79,9 @@ class DataBaseService:DataBaseServiceProtocol{
                 teamsaved.teamName=team.value(forKey: "teamName") as! String
                 teamsaved.leagueId=team.value(forKey: "leagueId") as! Int
                 teamsaved.teamImage=team.value(forKey: "teamImage")as! String
+                teamsaved.sportType=team.value(forKey: "sportType")as! String
+                
+                
                 retrievedArray.append(teamsaved)
                 print(teamsaved.teamName)
             }

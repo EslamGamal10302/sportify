@@ -12,16 +12,19 @@ struct StoredTeam{
     var leagueId:Int
     var teamName:String
     var teamImage:String
-    init(teamId: Int, leagueId: Int, teamName: String, teamImage: String) {
+    var sportType:String
+    init(teamId: Int, leagueId: Int, teamName: String, teamImage: String,sportType:String) {
         self.teamId = teamId
         self.leagueId = leagueId
         self.teamName = teamName
         self.teamImage = teamImage
+        self.sportType = sportType
     }
     init(){
         self.teamId = 0
         self.leagueId = 0
         self.teamName = ""
         self.teamImage = ""
+        self.sportType = ""
     }
 }
