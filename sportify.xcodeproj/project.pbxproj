@@ -40,6 +40,7 @@
 		A7348E862A1FE72100A423DE /* FavoriteTeamsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7348E852A1FE72100A423DE /* FavoriteTeamsPresenterProtocol.swift */; };
 		A7348E882A1FE74800A423DE /* FavoriteViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7348E872A1FE74800A423DE /* FavoriteViewProtocol.swift */; };
 		A735C4142A1934FC00B3001A /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735C4132A1934FC00B3001A /* HomeModel.swift */; };
+		A735E9412A20348600059E29 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735E9402A20348600059E29 /* NetworkServiceTest.swift */; };
 		A75807C62A1EB1DD0000EEB6 /* TeamDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75807C52A1EB1DD0000EEB6 /* TeamDetails.swift */; };
 		A75807C82A1EBAF70000EEB6 /* TeamDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75807C72A1EBAF70000EEB6 /* TeamDetailsPresenter.swift */; };
 		A75807CA2A1EBB070000EEB6 /* TeamDetailsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75807C92A1EBB070000EEB6 /* TeamDetailsPresenterProtocol.swift */; };
@@ -128,6 +129,7 @@
 		A7348E852A1FE72100A423DE /* FavoriteTeamsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTeamsPresenterProtocol.swift; sourceTree = "<group>"; };
 		A7348E872A1FE74800A423DE /* FavoriteViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewProtocol.swift; sourceTree = "<group>"; };
 		A735C4132A1934FC00B3001A /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		A735E9402A20348600059E29 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
 		A75807C52A1EB1DD0000EEB6 /* TeamDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetails.swift; sourceTree = "<group>"; };
 		A75807C72A1EBAF70000EEB6 /* TeamDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsPresenter.swift; sourceTree = "<group>"; };
 		A75807C92A1EBB070000EEB6 /* TeamDetailsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				A720924F2A17F1F5003FFBDB /* sportifyTests.swift */,
+				A735E9402A20348600059E29 /* NetworkServiceTest.swift */,
 			);
 			path = sportifyTests;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A735E9412A20348600059E29 /* NetworkServiceTest.swift in Sources */,
 				A72092502A17F1F5003FFBDB /* sportifyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
