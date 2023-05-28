@@ -23,7 +23,7 @@ struct Upcoming:Codable {
     // basketball and crakcet
     let event_home_team_logo:String?
     let event_away_team_logo:String?
-    // cracket
+    // cricket
     let event_date_start:String?
     // tennis
     let event_first_player:String?
