@@ -11,4 +11,5 @@ protocol DataBaseServiceProtocol{
     func insertTeam(data:StoredTeam , completion : @escaping (Bool)-> Void)
     func getAllTeams(completion : @escaping ([StoredTeam]?)-> Void)
     func deleteTeam(teamId:Int , completion : @escaping (Bool)-> Void)
+    func isFavorite(teamId:Int,completion :@escaping (Bool)->Void)
 }

@@ -27,6 +27,7 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
         self.specialSportImage = specialSportImage
     }
     func getTeamDetails() {
+        getTeamFavoriteStatus()
         if sportType == "football" {
             self.networkService.getTeamDetails(leagueId: leagueId, teamId: teamId) { [weak self] result in
                 print("debug team details",result!)
@@ -35,6 +36,14 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
             }
         } else {
             self.view.updateSpecialTeamData(teamImage: specialSportImage, teamName: specialSportName)
+        }
+    }
+    
+    func getTeamFavoriteStatus(){
+        dataBaseService.isFavorite(teamId: teamId) { status in
+            if status {
+                self.view.updateIsFavoriteStatus()
+            }
         }
     }
     
@@ -64,6 +73,17 @@ class TeamDetailsPresenter:TeamDetailsPresenterProtocol{
                 self?.view.showSuccessInsertAlert()
             }else {
                 self?.view.showFailureInsertAlert()
+            }
+        }
+    }
+    
+    func deleteTeamFromFavorite(){
+        self.dataBaseService.deleteTeam(teamId: teamId) { status in
+            if status {
+                self.view.showDeleteTeamSuccessAlert()
+                self.view.updateIsFavoriteButton()
+            } else{
+                self.view.showDeleteTeamErrorAlrt()
             }
         }
     }

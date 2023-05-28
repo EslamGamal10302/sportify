@@ -56,7 +56,14 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     
     
     @IBAction func addToFavorite(_ sender: UIButton) {
-        self.teamDetailsPresentr?.addTeamToFavorites(teamName: teamName ?? "" , teamImage: teamImageUrl ?? "")
+        if self.favorite.imageView?.image == UIImage(systemName: "heart.fill"){
+            print("added to favorite before")
+            confirmationForDelete()
+        } else {
+            self.teamDetailsPresentr?.addTeamToFavorites(teamName: teamName ?? "" , teamImage: teamImageUrl ?? "")
+        }
+    
+        
         
     }
     @IBOutlet weak var playersCollertionView: UICollectionView!
@@ -172,6 +179,53 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     
+    func updateIsFavoriteStatus(){
+        self.favorite.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+    }
     
+    func confirmationForDelete(){
+        let alert=UIAlertController(title: "Confirmation request", message: "Are you sure you want to delete this team from your favorite list?", preferredStyle: .alert)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Confirmation request", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "Are you sure you want to delete this team from your favorite list?", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+        let confirm=UIAlertAction(title: "confirm", style: .destructive){[self]
+            action in
+            self.teamDetailsPresentr?.deleteTeamFromFavorite()
+        }
+        let cancel = UIAlertAction(title: "cancel", style: .cancel)
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+    
+    func showDeleteTeamSuccessAlert(){
+        let alert = UIAlertController(title: "Deleted successfully", message: "team deleted successfully from your favorite list you can't display it again", preferredStyle: .alert)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Deleted successfully", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "team deleted successfully from your favorite list you can't display it again", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+        present(alert, animated: true)
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }
+    }
+    func showDeleteTeamErrorAlrt(){
+        let alert = UIAlertController(title: "Unexpected Error", message: "can't delete this team", preferredStyle: .alert)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor(named: "launch")
+        let attributedTitle = NSAttributedString(string: "Unexpected Error", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedTitle, forKey: "attributedTitle")
+        let attributedMessage = NSAttributedString(string: "can't delete this team", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "text")!])
+           alert.setValue(attributedMessage, forKey: "attributedMessage")
+        present(alert, animated: true)
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }
+    }
+    func updateIsFavoriteButton(){
+        self.favorite.setImage(UIImage(systemName: "heart"), for: .normal)
+    }
     
 }

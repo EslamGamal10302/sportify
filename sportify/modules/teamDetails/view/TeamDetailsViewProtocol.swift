@@ -11,5 +11,9 @@ protocol TeamDetailsViewProtocol{
     func updateSpecialTeamData(teamImage:String,teamName:String)
     func showSuccessInsertAlert()
     func showFailureInsertAlert()
+    func updateIsFavoriteStatus()
+    func showDeleteTeamSuccessAlert()
+    func showDeleteTeamErrorAlrt()
+    func updateIsFavoriteButton()
     
 }

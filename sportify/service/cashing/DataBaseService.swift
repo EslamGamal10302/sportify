@@ -44,7 +44,25 @@ class DataBaseService:DataBaseServiceProtocol{
                 completion(false)
             }
     }
-    
+     
+    func isFavorite(teamId:Int,completion :@escaping (Bool)->Void){
+        let fetchRequest=NSFetchRequest<NSManagedObject>(entityName: "TeamDetail")
+        let predicate = NSPredicate(format: "teamId == %d", teamId)
+        fetchRequest.predicate=predicate
+        do{
+            let existingTeam = try context?.fetch(fetchRequest)
+            if existingTeam?.isEmpty ?? true {
+                completion(false)
+            }else{
+                print("The item already exists")
+                completion(true)
+            }
+            
+            }catch{
+                print("an error occured in add")
+                completion(false)
+            }
+    }
     
     
     
