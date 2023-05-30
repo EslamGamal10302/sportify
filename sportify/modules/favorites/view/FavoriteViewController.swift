@@ -40,8 +40,6 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.myTable.reloadData()
         if data.isEmpty{
           addEmptyResultStatusSubview()
-        }else {
-            self.emptyDataMessage?.removeFromSuperview()
         }
      
     }
@@ -50,8 +48,6 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.myTable.reloadData()
         if favoriteteamsArray!.isEmpty {
             self.addEmptyResultStatusSubview()
-        }else {
-            self.emptyDataMessage?.removeFromSuperview()
         }
     }
     
