@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Reachability
 
 class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,LeagueDetailsViewProtocol {
     
@@ -75,9 +76,17 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == TeamesTable {
-            self.leagueDetailPresenter?.navigateToTeamDetailsScreen(teamId: teamsArray[indexPath.row].teamId, view: self,specialSportName: teamsArray[indexPath.row].teamName!,specialSportImage: teamsArray[indexPath.row].teamLogo ?? "")
+        
+        let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+            self.showAlert(title: "No Internet Connection", message: "there is no internet connection to fetch data , please reconnect and try again")
+        } else {
+            
+            if collectionView == TeamesTable {
+                self.leagueDetailPresenter?.navigateToTeamDetailsScreen(teamId: teamsArray[indexPath.row].teamId, view: self,specialSportName: teamsArray[indexPath.row].teamName!,specialSportImage: teamsArray[indexPath.row].teamLogo ?? "")
+            }
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

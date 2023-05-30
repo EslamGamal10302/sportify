@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Reachability
 
 class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,FavoriteViewProtocol {
   
@@ -136,7 +137,13 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.favoritePresenter?.navigateToTeamDetailsScreen(view: self, teamId: favoriteteamsArray![indexPath.row].teamId, leagueid: favoriteteamsArray![indexPath.row].leagueId, teamName: favoriteteamsArray![indexPath.row].teamName, teamImage: favoriteteamsArray![indexPath.row].teamImage, sportType: favoriteteamsArray![indexPath.row].sportType)
+        let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+            self.showAlert(title: "No Internet Connection", message: "there is no internet connection to fetch data , please reconnect and try again")
+        } else {
+            
+            self.favoritePresenter?.navigateToTeamDetailsScreen(view: self, teamId: favoriteteamsArray![indexPath.row].teamId, leagueid: favoriteteamsArray![indexPath.row].leagueId, teamName: favoriteteamsArray![indexPath.row].teamName, teamImage: favoriteteamsArray![indexPath.row].teamImage, sportType: favoriteteamsArray![indexPath.row].sportType)
+        }
     }
     func  prepareloadingNetworkIndicator(){
         loadingNetworkIndicator.color=UIColor(named: "button")

@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Reachability
 
 class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,LeaguesViewProtocol {
     
@@ -99,7 +100,14 @@ class LeaguesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        leaguesPresenter?.navigateToLeagueDetailsScreen(leagueID: (leaguesArray?[indexPath.row].league_key)!, view: self)
+        let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+            self.showAlert(title: "No Internet Connection", message: "there is no internet connection to fetch data , please reconnect and try again")
+        } else {
+            
+            leaguesPresenter?.navigateToLeagueDetailsScreen(leagueID: (leaguesArray?[indexPath.row].league_key)!, view: self)
+        }
+        
     }
 
 

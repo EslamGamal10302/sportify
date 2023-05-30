@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout,HomeViewProtocol {
    
     
@@ -74,9 +74,13 @@ class HomeViewController: UICollectionViewController,UICollectionViewDelegateFlo
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sportKey = sportsAray![indexPath.row].key
-        homeProtocol?.navigateToSportLeaguesScreen(sportKey: sportKey, screen: self)  
-        
+        let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+            self.showAlert(title: "No Internet Connection", message: "there is no internet connection to fetch data , please reconnect and try again")
+        }  else {
+            let sportKey = sportsAray![indexPath.row].key
+            homeProtocol?.navigateToSportLeaguesScreen(sportKey: sportKey, screen: self)
+        }
     }
 
 
