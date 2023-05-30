@@ -22,6 +22,7 @@ class FavoriteViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     override func viewWillAppear(_ animated: Bool) {
         print("will appear")
+        self.emptyDataMessage?.removeFromSuperview()
         searchBar.delegate=self
         prepareloadingNetworkIndicator()
         favoriteteamsArray=[FavoriteTeamsDisplay]()
