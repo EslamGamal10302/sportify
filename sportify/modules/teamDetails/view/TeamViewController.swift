@@ -37,7 +37,10 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
         self.team_name.text=recivedData.team_name
         self.teamName=recivedData.team_name
         self.team_coach.text=recivedData.coach_name
+        self.team_image.layer.cornerRadius = self.team_image.frame.size.width / 2
+        self.team_image.clipsToBounds = true
         self.team_image.sd_setImage(with: URL(string: recivedData.team_logo ?? ""), placeholderImage: UIImage(named: "empty"))
+        
         self.teamImageUrl=recivedData.team_logo
         guard let players = recivedData.players else {return}
         playersArray=players
@@ -47,6 +50,8 @@ class TeamViewController: UIViewController,UICollectionViewDelegate,UICollection
     func updateSpecialTeamData(teamImage: String, teamName: String) {
         self.team_name.text=teamName
         self.teamName=teamName
+        self.team_image.layer.cornerRadius = self.team_image.frame.size.width / 2
+        self.team_image.clipsToBounds = true
         self.team_image.sd_setImage(with: URL(string: teamImage), placeholderImage: UIImage(named: "empty"))
         self.teamImageUrl=teamImage
         self.team_coach.text="Not Available"

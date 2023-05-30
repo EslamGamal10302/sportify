@@ -68,6 +68,8 @@ class LeagueDetailsViewController: UIViewController,UICollectionViewDelegate,UIC
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamsCell", for: indexPath) as! TeamsViewCell
             cell.teamImage.sd_setImage(with: URL(string: teamsArray[indexPath.row].teamLogo ?? ""), placeholderImage: UIImage(named: "empty"))
+            cell.layer.cornerRadius = cell.bounds.height / 2 
+             cell.layer.masksToBounds = true
             return cell
         }
         
