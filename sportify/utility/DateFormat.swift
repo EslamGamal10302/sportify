@@ -20,7 +20,7 @@ class DateFormat {
         let currentDate = Date()
         let calendar = Calendar.current
         var dateComponent = DateComponents()
-        dateComponent.day = -15
+        dateComponent.day = -365
         let pastDate = calendar.date(byAdding: dateComponent, to: currentDate)
         let formattedPastDate = dateFormatter.string(from: pastDate!)
         return formattedPastDate
