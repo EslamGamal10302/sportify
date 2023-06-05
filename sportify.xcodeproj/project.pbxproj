@@ -48,6 +48,7 @@
 		A75807C82A1EBAF70000EEB6 /* TeamDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75807C72A1EBAF70000EEB6 /* TeamDetailsPresenter.swift */; };
 		A75807CA2A1EBB070000EEB6 /* TeamDetailsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75807C92A1EBB070000EEB6 /* TeamDetailsPresenterProtocol.swift */; };
 		A75807CC2A1EBB990000EEB6 /* TeamDetailsViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75807CB2A1EBB990000EEB6 /* TeamDetailsViewProtocol.swift */; };
+		A763180A2A2E8347009798B1 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76318092A2E8347009798B1 /* DateFormat.swift */; };
 		A76E649D2A265F6200F39686 /* TeamDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E649C2A265F6200F39686 /* TeamDetails.swift */; };
 		A76E649F2A265F9F00F39686 /* UpcomingFixtureDisplayedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E649E2A265F9F00F39686 /* UpcomingFixtureDisplayedData.swift */; };
 		A76E64A12A265FB300F39686 /* LatestResultDisplayedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E64A02A265FB300F39686 /* LatestResultDisplayedData.swift */; };
@@ -147,6 +148,7 @@
 		A75807C72A1EBAF70000EEB6 /* TeamDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsPresenter.swift; sourceTree = "<group>"; };
 		A75807C92A1EBB070000EEB6 /* TeamDetailsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsPresenterProtocol.swift; sourceTree = "<group>"; };
 		A75807CB2A1EBB990000EEB6 /* TeamDetailsViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewProtocol.swift; sourceTree = "<group>"; };
+		A76318092A2E8347009798B1 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		A76E649C2A265F6200F39686 /* TeamDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetails.swift; sourceTree = "<group>"; };
 		A76E649E2A265F9F00F39686 /* UpcomingFixtureDisplayedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingFixtureDisplayedData.swift; sourceTree = "<group>"; };
 		A76E64A02A265FB300F39686 /* LatestResultDisplayedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestResultDisplayedData.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				A7DE3ABC2A26910A00FC6A8A /* Alarm.swift */,
+				A76318092A2E8347009798B1 /* DateFormat.swift */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -884,6 +887,7 @@
 				A7D9F5422A1A574E009CACC2 /* TeamViewController.swift in Sources */,
 				A7ED03872A1C04CF003958C0 /* HomeViewProtocol.swift in Sources */,
 				A7348E842A1FE70900A423DE /* FavoriteTeamsPresenter.swift in Sources */,
+				A763180A2A2E8347009798B1 /* DateFormat.swift in Sources */,
 				A71E814C2A1C1BF000B5A8DC /* NetworkService.swift in Sources */,
 				A7348E812A1FE6B000A423DE /* FavoriteTeamsDisplay.swift in Sources */,
 				A7DE3ABD2A26910A00FC6A8A /* Alarm.swift in Sources */,

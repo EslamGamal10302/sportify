@@ -1014,7 +1014,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.forward.square.fill" catalog="system" width="32" height="32"/>
+        <image name="arrow.forward.square.fill" catalog="system" width="128" height="114"/>
         <image name="figure.disc.sports" catalog="system" width="128" height="108"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="splash" width="166.66667175292969" height="166.66667175292969"/>
